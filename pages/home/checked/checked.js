@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    scannerImg: "../../../images/checked/scanner.png"
   },
 
   /**
@@ -61,6 +61,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+
+  },
+
+  /** 手动录入 */
+  manualInput(){
+
+  },
+  /** 扫描录入 */
+  scannerInput(){
 
   }
 })

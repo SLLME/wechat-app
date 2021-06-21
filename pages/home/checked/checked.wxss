@@ -1,1 +1,38 @@
 /* pages/home/checked/checked.wxss */
+.public-checked-content{
+  width: 100%;
+  padding: 20px;
+}
+.public-checked-content-operation{
+  width: 100%;
+  border: 1px solid #cccccc80;
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+}
+.public-checked-content-operation image{
+  width: 60%;
+}
+.public-checked-content-operation div{
+  margin-bottom: 25px;
+  font-size: 1.2em;
+}
+.public-checked-content-operation div:first-child{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.public-checked-content-operation div:first-child div{
+  font-size: 1em;
+  margin-bottom: 0px;
+}
+.public-checked-content-tips{
+  margin-top: 30px;
+  color: #cccccc;
+}
+.public-checked-content-tips p:first-child{
+  color: black;
+}
