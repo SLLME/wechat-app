@@ -2,7 +2,8 @@
   "usingComponents": {
     "mp-toptips": "weui-miniprogram/toptips/toptips",
     "mp-col": "@miniprogram-component-plus/col",
-    "mp-row": "@miniprogram-component-plus/row"
+    "mp-row": "@miniprogram-component-plus/row",
+    "mp-icon": "weui-miniprogram/icon/icon"
   },
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",

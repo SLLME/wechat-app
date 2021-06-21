@@ -7,10 +7,60 @@ Page({
    * 页面的初始数据
    */
   data: {
-    img: "",
-    type: 'success',
-    msg: '',
-    date1: "111",
+    companyName: "广州众智汇科技有限公司",
+    userName: "叶良辰",
+    operationNavArr:[
+      {
+        name: '扫一扫',
+        icon: "../../images/home/scan.png",
+        route: "",
+      },
+      {
+        name: '拍照',
+        icon: "../../images/home/camera.png",
+        route: "",
+      },
+      {
+        name: '打印',
+        icon: "../../images/home/print.png",
+        route: "",
+      },
+      {
+        name: '发票查验',
+        icon: "../../images/home/check.png",
+        route: "/checked",
+      }
+    ],
+    collectionTypeArr: [
+      {
+        name: '微信',
+        icon: "../../images/about/wx.png",
+      },
+      {
+        name: '支付宝',
+        icon: "../../images/about/zhifubao.png",
+      },
+      {
+        name: '短信',
+        icon: "../../images/about/short_message.png",
+      },
+      {
+        name: '邮箱',
+        icon: "../../images/about/email.png",
+      },
+      {
+        name: '照片',
+        icon: "../../images/about/photo.png",
+      }
+      ,{
+        name: '手工',
+        icon: "../../images/about/manual.png",
+      },
+      {
+        name: '携程',
+        icon: "../../images/about/xiecheng.png",
+      }
+    ]
   },
 
   /**
@@ -82,5 +132,10 @@ Page({
     this.setData({
       msg: "这是一个成功提示文本"
     })
+  },
+  /** 跳转 */
+  operationJump(event){
+    let item = event.currentTarget.dataset.params;
+    console.log(item);
   }
 })
