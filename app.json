@@ -5,7 +5,8 @@
     "pages/logs/logs",
     "pages/about/about",
     "pages/folder/folder",
-    "pages/camera/camera"
+    "pages/camera/camera",
+    "pages/home/checked/checked"
   ],
   "window": {
     "backgroundTextStyle": "light",

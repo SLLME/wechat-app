@@ -28,7 +28,7 @@ Page({
       {
         name: '发票查验',
         icon: "../../images/home/check.png",
-        route: "/checked",
+        route: "checked/checked",
       }
     ],
     collectionTypeArr: [
@@ -138,7 +138,7 @@ Page({
     let item = event.currentTarget.dataset.params;
     console.log(item);
     wx.navigateTo({
-      url: 'url',
+      url: item.route,
     })
   }
 })
