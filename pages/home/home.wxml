@@ -1,0 +1,24 @@
+<!--pages/home/home.wxml-->
+<view class="app-container">
+  <view>
+    <mp-row>
+      <mp-col wx:for="{{[1,2,3]}}" wx:for-index="index" wx:for-item="item" wx:key="index" span="{{24/3}}"
+        class="public-center">
+        {{index}}:{{item}}
+      </mp-col>
+    </mp-row>
+  </view>
+  <view>
+    {{ date1 }}
+  </view>
+  <view>
+    <include src="./../component/A/a.wxml"></include>
+  </view>
+  <import src="./../component/A/a.wxml"></import>
+  <view>
+    <template is='a'></template>
+  </view>
+  <view>
+    <include src="./../component/B/b.wxml"></include>
+  </view>
+</view>

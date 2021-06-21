@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/about/about",
+    "pages/folder/folder",
+    "pages/camera/camera"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "black",
+    "selectedColor": "#338ae8",
+    "list": [
+      {
+        "iconPath": "images/index/shouye-gray.png",
+        "selectedIconPath": "images/index/shouye-blue.png",
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "iconPath": "images/index/xiangji-gray.png",
+        "selectedIconPath": "images/index/xiangji-blue.png",
+        "pagePath": "pages/camera/camera",
+        "text": "相机"
+      },
+      {
+        "iconPath": "images/index/fapiaojia-gray.png",
+        "selectedIconPath": "images/index/fapiaojia-blue.png",
+        "pagePath": "pages/folder/folder",
+        "text": "发票夹"
+      },
+      {
+        "iconPath": "images/index/wode-gray.png",
+        "selectedIconPath": "images/index/wode-blue.png",
+        "pagePath": "pages/about/about",
+        "text": "我的"
+      }
+    ]
+  }
+}

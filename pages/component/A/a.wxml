@@ -1,0 +1,6 @@
+<!--pages/component/A/a.wxml-->
+<text>pages/component/A/a.wxml</text>
+<template name="a">
+  这是a模板的文本
+</template>
+<view>这是A.wxml的文本</view>
