@@ -137,5 +137,8 @@ Page({
   operationJump(event){
     let item = event.currentTarget.dataset.params;
     console.log(item);
+    wx.navigateTo({
+      url: 'url',
+    })
   }
 })
