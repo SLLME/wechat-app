@@ -1,0 +1,57 @@
+<!--pages/home/manual/manual.wxml-->
+<view class="app-container">
+  <view class="public-manual-content public-flex-content">
+    <view class="public-manual-content-form">
+      <mp-form id="manualForm" rules="{{rules}}" models="{{formData}}">
+        <mp-cells title="" footer="">
+          <mp-cell prop="invCode" title="发票代码" ext-class="" show-error>
+            <input data-field="invCode" class="weui-input" placeholder="请输入发票代码" bindinput="formFieldChange"/>
+          </mp-cell>
+          <mp-cell prop="invNo" title="发票号码" ext-class="" show-error>
+            <input data-field="invNo" class="weui-input" placeholder="请输入发票号码" bindinput="formFieldChange"/>
+          </mp-cell>
+          <mp-cell prop="invDate" title="开票日期" ext-class="" show-error>
+            <picker data-field="date" mode="date" value="{{formData.invDate}}" placeholder="请选择开票日期" bindchange="invDateChange">
+              <view class="weui-input">{{formData.invDate}}</view>
+            </picker>
+          </mp-cell>
+          <mp-cell prop="totalAmountWithoutTax" title="不含税金额" ext-class="" show-error>
+            <input data-field="totalAmountWithoutTax" class="weui-input" placeholder="请输入不含税金额" bindinput="formFieldChange"/>
+          </mp-cell>
+          <mp-cell prop="checkCode" title="校验码后六位" ext-class="" show-error>
+            <input data-field="checkCode" class="weui-input" placeholder="请输入校验码后六位" bindinput="formFieldChange"/>
+          </mp-cell>
+          <mp-cell prop="totalAmount" title="价税合计" ext-class="" show-error>
+            <input data-field="totalAmount" class="weui-input" placeholder="请输入价税合计" bindinput="formFieldChange"/>
+          </mp-cell>
+          <mp-cell prop="folder" title="所属票夹">
+            <picker bindchange="folderChange" value="{{folderIndex}}" range="{{folderArr}}">
+              <view class="weui-input">{{folderArr[folderIndex]}}</view>
+            </picker>
+          </mp-cell>
+          <mp-cell title="文件上传" prop="files">
+            <view class="my-weui-uploader__input-box" wx:for="{{formData.files}}" wx:for-index="index"
+              wx:for-item="item" wx:key="index" bindtap="previewImage" data-index="{{index}}">
+              <image src="{{item}}" mode="widthFix"></image>
+            </view>
+            <view class="weui-uploader__input-box" bindtap="selectFile">
+
+            </view>
+            <!-- <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" bindselect="selectFile" upload="{{uplaodFile}}"
+          max-count="5" title="图片上传"></mp-uploader> -->
+          </mp-cell>
+        </mp-cells>
+        <view class="weui-btn-area">
+          <button class="weui-btn public-width-100" type="primary" bindtap="submitManualForm">查验</button>
+        </view>
+      </mp-form>
+    </view>
+    <view class="public-manual-content-tips">
+      <view>查验提示：</view>
+      <view>1.当日开具发票当日可查验。</view>
+      <view>2.每份发票每天最多可查验五次。</view>
+      <view>3.可查验最近五年内增值税发票管理系统开具的发票。</view>
+    </view>
+  </view>
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+</view>

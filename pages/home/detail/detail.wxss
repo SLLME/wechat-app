@@ -1,0 +1,24 @@
+/* pages/home/detail/detail.wxss */
+.public-detail-content{
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.public-detail-body{
+  width: 100%;
+  border: 1px solid #cccccc80;
+  border-radius: 5%;
+  font-size: 16px;
+}
+.public-detail-body-title{
+  font-size: 1.2em;
+  text-align: center;
+}
+.public-cell-right-text{
+  margin-left: 10px;
+}
+
+
+.weui-cell{
+  padding: 8px 16px;
+}

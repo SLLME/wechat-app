@@ -1,12 +1,14 @@
 {
   "pages": [
+    "pages/home/detail/detail",
+    "pages/home/checked/checked",
     "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
     "pages/about/about",
     "pages/folder/folder",
     "pages/camera/camera",
-    "pages/home/checked/checked"
+    "pages/home/manual/manual"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,42 @@
+/* pages/home/manual/manual.wxss */
+.public-manual-content{
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.public-manual-content-form{
+  width: 100%;
+  border: 1px solid #cccccc80;
+  border-radius: 3%;
+}
+
+.my-weui-uploader__input-box{
+  overflow: hidden;
+  float: left;
+  position: relative;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  width: 96px;
+  height: 96px;
+  box-sizing: border-box;
+  background-color: #ededed;
+}
+.my-weui-uploader__input-box image{
+  width: 100%;
+}
+.public-manual-content-tips{
+  margin-top: 30px;
+  color: #cccccc;
+}
+.public-manual-content-tips view:first-child{
+  color: black;
+}
+.weui-cells:after, .weui-cells:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  color: white;
+  z-index: -2;
+}

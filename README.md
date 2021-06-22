@@ -6,3 +6,7 @@
 git add .
 git commit
 git push -u origin master
+
+#如果提交不了git 可以把url地址由https换成git
+git remote rm origin
+git remote add origin url

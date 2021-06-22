@@ -3,16 +3,17 @@
   <view class="public-checked-content public-flex-content">
     <view class="public-checked-content-operation">
       <view bindtap="scannerInput">
-        <image src="{{scannerImg}}" />
+        <image src="{{scannerImg}}" mode="widthFix"/>
         <view>点击扫码</view>
       </view>
       <view bindtap="manualInput">手动录入</view>
     </view>
     <view class="public-checked-content-tips">
-      <p>查验提示：</p>
-      <p>1.当日开具发票当日可查验。</p>
-      <p>2.每份发票每天最多可查验五次。</p>
-      <p>3.可查验最近五年内增值税发票管理系统开具的发票。</p>
+      <view>查验提示：</view>
+      <view>1.当日开具发票当日可查验。</view>
+      <view>2.每份发票每天最多可查验五次。</view>
+      <view>3.可查验最近五年内增值税发票管理系统开具的发票。</view>
     </view>
   </view>
+
 </view>

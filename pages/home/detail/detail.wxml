@@ -1,0 +1,25 @@
+<!--pages/home/detail/detail.wxml-->
+<view class="app-container">
+  <view class="public-detail-content">
+    <view class="public-detail-body">
+      <view class="public-detail-body-title">增值税普通电子发票</view>
+      <view>
+        <mp-cell title="发票代码">
+          <view class="public-cell-right-text">
+            111111111111
+          </view>
+        </mp-cell>
+        <mp-cell title="发票号码">
+          <view class="public-cell-right-text">
+            22222222
+          </view>
+        </mp-cell>
+        <mp-cell title="校验码">
+          <view class="public-cell-right-text">
+            22222222
+          </view>
+        </mp-cell>
+      </view>
+    </view>
+  </view>
+</view>

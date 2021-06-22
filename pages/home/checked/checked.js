@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    scannerImg: "../../../images/checked/scanner.png"
+    scannerImg: "../../../images/checked/scanner.png",
+    manualPopupShow: true,
   },
 
   /**
@@ -66,7 +67,10 @@ Page({
 
   /** 手动录入 */
   manualInput(){
-
+    /** 跳转到手工录入界面 */
+    wx.navigateTo({
+      url: '../manual/manual',
+    })
   },
   /** 扫描录入 */
   scannerInput(){

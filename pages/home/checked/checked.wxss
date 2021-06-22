@@ -2,6 +2,7 @@
 .public-checked-content{
   width: 100%;
   padding: 20px;
+  box-sizing: border-box;
 }
 .public-checked-content-operation{
   width: 100%;
@@ -15,17 +16,17 @@
 .public-checked-content-operation image{
   width: 60%;
 }
-.public-checked-content-operation div{
+.public-checked-content-operation view{
   margin-bottom: 25px;
   font-size: 1.2em;
 }
-.public-checked-content-operation div:first-child{
+.public-checked-content-operation view:first-child{
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  width: 100%;
 }
-.public-checked-content-operation div:first-child div{
+.public-checked-content-operation view:first-child view{
   font-size: 1em;
   margin-bottom: 0px;
 }
@@ -33,6 +34,6 @@
   margin-top: 30px;
   color: #cccccc;
 }
-.public-checked-content-tips p:first-child{
+.public-checked-content-tips view:first-child{
   color: black;
 }
