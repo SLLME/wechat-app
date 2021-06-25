@@ -1,0 +1,20 @@
+<!--pages/about/help/help.wxml-->
+<view class="app-container public-flex">
+  <view class="public-content public-flex-content">
+    <view class="public-content-item">
+      <view class="public-content-item-item">常见问题</view>
+      <view class="public-content-item-item" bindtap="jumpPage" data-path="problemDetail/problemDetail">发票查验失败
+        <van-icon name="arrow" />
+      </view>
+      <view class="public-content-item-item">OCR识别异常
+        <van-icon name="arrow" />
+      </view>
+    </view>
+    <view class="public-content-item">
+      <view class="public-content-item-item">反馈</view>
+      <view class="public-content-item-item">联系电话：2121212121</view>
+      <view class="public-content-item-item">联系邮箱：1554545454</view>
+      <view class="public-content-item-item">QQ反馈群：5656656565</view>
+    </view>
+  </view>
+</view>

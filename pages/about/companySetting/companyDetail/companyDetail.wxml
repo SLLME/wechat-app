@@ -1,0 +1,32 @@
+<!--pages/about/companySetting/companyDetail/companyDetail.wxml-->
+<view class="app-container public-flex">
+  <view class="public-add-company-content public-flex-content">
+    <view class="public-add-company-content-form">
+      <mp-form id="addCompanyForm" rules="{{addCompanyRules}}" models="{{addCompanyFormData}}">
+        <mp-cells title="" footer="">
+          <mp-cell prop="companyName" title="公司名称" ext-class="" show-error>
+            <input data-field="companyName" class="weui-input" placeholder="请输入公司名称" bindinput="formFieldChange" />
+          </mp-cell>
+          <mp-cell prop="taxNo" title="公司税号" ext-class="" show-error>
+            <input data-field="taxNo" class="weui-input" placeholder="请输入公司税号" bindinput="formFieldChange" />
+          </mp-cell>
+          <mp-cell prop="addressTel" title="地址电话" ext-class="" show-error>
+            <input data-field="addressTel" class="weui-input" placeholder="请输入地址电话" bindinput="formFieldChange" />
+          </mp-cell>
+          <mp-cell prop="bankAccount" title="银行账户" ext-class="" show-error>
+            <input data-field="bankAccount" class="weui-input" placeholder="请输入银行账户" bindinput="formFieldChange" />
+          </mp-cell>
+          <mp-cell prop="userName" title="用户账号" ext-class="" show-error>
+            <input data-field="userName" class="weui-input" placeholder="请输入用户账号" bindinput="formFieldChange" />
+          </mp-cell>
+          <mp-cell prop="userPassword" title="用户密码" ext-class="" show-error>
+            <input data-field="userPassword" class="weui-input" placeholder="请输入用户密码" bindinput="formFieldChange" />
+          </mp-cell>
+        </mp-cells>
+      </mp-form>
+    </view>
+  </view>
+  <view class="public-add-company-bottom public-flex-bottom">
+    <button type="primary" plain="true" bindtap="addCompany">确定</button>
+  </view>
+</view>

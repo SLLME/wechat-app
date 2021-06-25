@@ -1,34 +1,11 @@
-// pages/about/about.js
+// pages/about/help/help.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userName: "叶良辰",
-    telephone: "18273733315",
-    aboutArr: [
-      {
-        name: '公司设置',
-        icon: "../../images/about/company_setting.png",
-        path: 'companySetting/companySetting',
-      },
-      {
-        name: '个人设置',
-        icon: "../../images/about/personal_setting.png",
-        path: 'personalSetting/personalSetting'
-      },
-      {
-        name: '帮助与反馈',
-        icon: "../../images/about/help.png",
-        path: 'help/help'
-      },
-      {
-        name: '操作指南',
-        icon: "../../images/about/guide.png",
-        path: 'guide/guide'
-      }
-    ]
+
   },
 
   /**
@@ -86,10 +63,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  /** 点击事件 */
-  aboutClick(e){
-    console.log(e);
-    let path = e.currentTarget.dataset.item.path;
+  /** 跳转到问题详情 */
+  jumpPage(e){
+    let path = e.currentTarget.dataset.path;
     wx.navigateTo({
       url: path,
     })

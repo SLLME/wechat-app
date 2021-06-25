@@ -1,14 +1,21 @@
 {
   "pages": [
-    "pages/home/detail/detail",
-    "pages/home/checked/checked",
+    "pages/folder/folder",
+    "pages/about/about",
     "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/about/about",
-    "pages/folder/folder",
+    
     "pages/camera/camera",
-    "pages/home/manual/manual"
+    "pages/home/manual/manual",
+    "pages/home/detail/detail",
+    "pages/home/checked/checked",
+    "pages/about/personalSetting/personalSetting",
+    "pages/about/help/help",
+    "pages/about/guide/guide",
+    "pages/about/companySetting/companyDetail/companyDetail",
+    "pages/about/companySetting/companySetting",
+    "pages/about/help/problemDetail/problemDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

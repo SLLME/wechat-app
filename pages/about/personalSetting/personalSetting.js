@@ -1,34 +1,23 @@
-// pages/about/about.js
+// pages/about/personalSetting/personalSetting.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userName: "叶良辰",
-    telephone: "18273733315",
-    aboutArr: [
-      {
-        name: '公司设置',
-        icon: "../../images/about/company_setting.png",
-        path: 'companySetting/companySetting',
-      },
-      {
-        name: '个人设置',
-        icon: "../../images/about/personal_setting.png",
-        path: 'personalSetting/personalSetting'
-      },
-      {
-        name: '帮助与反馈',
-        icon: "../../images/about/help.png",
-        path: 'help/help'
-      },
-      {
-        name: '操作指南',
-        icon: "../../images/about/guide.png",
-        path: 'guide/guide'
-      }
-    ]
+    personalInfoForm: {
+      wx: "aaaaa",
+      nickName: 'aaaaa',
+      account: 'aaaaaa',
+      phone: 'aaaaa',
+      email: 'aaaaa',
+      addr: 'aaaaa',
+    },
+    personalInfoRuels: [
+
+    ],
+    isEdit: false
+
   },
 
   /**
@@ -86,12 +75,28 @@ Page({
   onShareAppMessage: function () {
 
   },
-  /** 点击事件 */
-  aboutClick(e){
-    console.log(e);
-    let path = e.currentTarget.dataset.item.path;
-    wx.navigateTo({
-      url: path,
+  /** 编辑按钮 */
+  editInfo(){
+    this.setData({
+      isEdit: true
     })
-  }
+  },
+  /** 修改按钮 */
+  editSubmit(){
+    let that = this;
+    wx.showModal({
+      content: "确认修改？",
+      success (res) {
+        that.setData({
+          isEdit: false
+        })
+        if (res.confirm) {
+          // TODO 执行后台修改接口
+
+        }else if(res.cancel){
+
+        }
+      }
+    })
+  },
 })

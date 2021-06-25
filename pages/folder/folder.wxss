@@ -1,1 +1,56 @@
 /* pages/folder/folder.wxss */
+.public-top-title{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-bottom: 1px solid #cccccc80;
+  
+}
+.public-top-title view{
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+}
+.public-top-title .van-icon{
+  margin-right: 5px;
+}
+
+.public-folder-content-item{
+  padding: 10px 20px;
+  border-bottom: 1px solid #cccccc80;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+.public-item-select{
+  background: #f7f7f7;
+}
+.public-folder-content-item-left{
+  display: flex;
+  align-items: center;
+}
+.public-folder-content-item-left image{
+  width: 30px;
+  margin-right: 5px;
+}
+.public-folder-content-item-right{
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+ 
+}
+.public-folder-content-item-right .vant-icon{
+  /* font-size: 24px;
+  margin-left: 5px; */
+}
+.public-folder-content-item-right-left{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 5px;
+}
+.public-color-gray{
+  color: gray;
+}

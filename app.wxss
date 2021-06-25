@@ -1,5 +1,9 @@
 @import "./miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss"
 /**app.wxss**/
+page{
+  height: 100%;
+  width: 100%;
+}
 .container {
   height: 100%;
   display: flex;
@@ -13,14 +17,6 @@
   height: 100%;
   font-size: 16px;
 }
-.public-top-title{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-  padding: 0 20px;
-  font-size: 1.2rem;
-}
 
 .public-center{
   text-align: center;
@@ -33,4 +29,19 @@
 }
 .public-width-100{
   width: 100%!important;
+}
+
+.public-flex{
+  display: flex;
+  flex-direction: column;
+}
+.public-flex-top{
+  flex: 0;
+}
+.public-flex-content{
+  flex: 1;
+  overflow: auto;
+}
+.public-flex-buttom{
+  flex: 0;
 }

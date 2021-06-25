@@ -1,2 +1,14 @@
 <!--pages/about/about.wxml-->
-<text>pages/about/about.wxml</text>
+<view class="app-container public-flex">
+  <view class="public-top-title public-flex-top">
+    <view class="public-top-title-left">{{userName}}</view>
+    <view class="public-top-title-right">{{telephone}}</view>
+  </view>
+  <view class="public-about-content public-flex-content">
+    <view class="public-about-content-item" wx:for="{{aboutArr}}" wx:for-index="index" wx:for-item="item" wx:key="index"
+      data-item="{{item}}" bindtap="aboutClick">
+      <image src="{{item.icon}}" mode="widthFix"/>
+      <view>{{item.name}}</view>
+    </view>
+  </view>
+</view>

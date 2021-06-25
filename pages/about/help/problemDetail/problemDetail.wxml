@@ -1,0 +1,25 @@
+<!--pages/about/help/problemDetail/problemDetail.wxml-->
+<view class="app-container public-flex">
+  <view class="public-content public-flex-content">
+    <view class="public-content-item">
+      <view class="public-content-item-title">发票不存在</view>
+      <view class="public-content-item-content">
+        <view>处理方式</view>
+        <view>处理方式</view>
+        <view>处理方式</view>
+        <view>处理方式</view>
+        <view>处理方式</view>
+      </view>
+    </view>
+    <view class="public-content-item">
+      <view class="public-content-item-title">查验异常</view>
+      <view class="public-content-item-content">
+        <view>处理方式</view>
+        <view>处理方式</view>
+        <view>处理方式</view>
+        <view>处理方式</view>
+        <view>处理方式</view>
+      </view>
+    </view>
+  </view>
+</view>

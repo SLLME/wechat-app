@@ -5,7 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    folderArr: [
+      {
+        name: '发票夹（默认）',
+        icon: "../../images/folder/folder.png",
+        amount: 2021,
+        num: 5,
+        checked: false,
+      },
+      {
+        name: '加班打滴',
+        icon: "../../images/folder/folder.png",
+        amount: 6666,
+        num: 555,
+        checked: false,
+      }
+    ],
+    addDialogShow: false,
+    buttons: [{text: '取消'}, {text: '确定'}],
+    folderName: "aaaa",
   },
 
   /**
@@ -62,5 +80,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /** 新增按钮 */
+  addFolder(){
+    this.setData({
+      addDialogShow: true
+    })
   }
 })

@@ -1,0 +1,8 @@
+<!--pages/component/loading/loading.wxml-->
+<!-- <mp-dialog title="aa" show="{{dialogShow}}" mask="true">
+  <vant-loading color="red" size="50px"></vant-loading>
+  <view>test content</view>
+</mp-dialog> -->
+<mp-dialog title="test" show="{{dialogShow}}">
+  <view>test content</view>
+</mp-dialog>

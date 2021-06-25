@@ -1,0 +1,53 @@
+/* pages/about/companySetting/companySetting.wxss */
+.public-content-title{
+  padding: 10px 12px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #cccccc80;
+}
+.public-content-title view{
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+.public-content-title image{
+  width: 30px;
+}
+.public-content-body{
+  font-size: 16px;
+}
+.public-content-body-item{
+  position: relative;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border-bottom: 1px solid #cccccc80;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.weui-cells:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  color: white;
+  z-index: -2;
+}
+
+.public-companysetting-bottom{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+.public-companysetting-bottom button{
+  margin: 10px 10%!important;
+}
+.current-item .weui-cell{
+  background: linear-gradient(to right, #179c16 0%,#ffffff 100%);
+  color: white;
+  font-weight: 600;
+}

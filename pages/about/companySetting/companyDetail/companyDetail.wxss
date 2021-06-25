@@ -1,0 +1,13 @@
+/* pages/about/companySetting/companyDetail/companyDetail.wxss */
+.public-add-company-content{
+  padding: 20px;
+}
+.public-add-company-content-form{
+  /* border-radius: 5px;
+  border: 1px solid #cccccc80; */
+}
+.public-add-company-bottom{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}

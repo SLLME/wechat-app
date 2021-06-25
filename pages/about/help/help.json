@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "van-icon": "vant-weapp/icon/index"
+  },
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "帮助与反馈",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": false
+}

@@ -1,7 +1,5 @@
 {
   "usingComponents": {
-    "vant-icon": "vant-weapp/icon/index",
-    "mp-dialog": "weui-miniprogram/dialog/dialog",
     "mp-toptips": "weui-miniprogram/toptips/toptips",
     "mp-cells": "weui-miniprogram/cells/cells",
     "mp-cell": "weui-miniprogram/cell/cell",
@@ -11,7 +9,7 @@
   },
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "发票夹",
+  "navigationBarTitleText": "新增公司",
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light",
   "enablePullDownRefresh": false

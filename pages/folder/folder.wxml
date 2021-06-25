@@ -1,2 +1,39 @@
 <!--pages/folder/folder.wxml-->
-<text>pages/folder/folder.wxml</text>
+<view class="app-container public-flex">
+  <view class="public-top-title public-flex-top">
+    <view bindtap="addFolder">
+      <vant-icon name="plus" size="1.2em" />发票夹
+    </view>
+    <view bindtap="operationFolder">
+      <vant-icon name="apps-o" size="1.2em" />编辑
+    </view>
+  </view>
+
+  <view class="public-folder-content public-flex-content">
+    <view wx:for="{{folderArr}}" wx:for-index="index" wx:for-item="item"
+      class="{{item.checked ? 'public-item-select' : '' }} public-folder-content-item" wx:key="index">
+      <view class="public-folder-content-item-left" bindtap="folderSelect(index)">
+        <view class="public-left-select-icon" wx:if="{{item.checked}}">
+          <vant-icon name="success" />
+        </view>
+        <image src="{{item.icon}}" mode="widthFix"/>
+        {{item.name}}
+      </view>
+      <view class="public-folder-content-item-right" bindtap="jumpInvoiceList">
+        <view class="public-folder-content-item-right-left">
+          <view>{{item.amount}}元</view>
+          <view class="public-color-gray">{{item.num}}张</view>
+        </view>
+        <view>
+          <vant-icon name="arrow" size="1.4em"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<mp-dialog show="{{addDialogShow}}" title="新增发票夹" buttons="{{buttons}}">
+  <mp-cell title="发票夹名字">
+    <input  class="weui-input" placeholder="请输入发票夹名字" value="{{folderName}}" bindinput="formFieldChange"/>
+  </mp-cell>
+</mp-dialog>
