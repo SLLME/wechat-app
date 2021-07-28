@@ -2,24 +2,131 @@
 <view class="app-container">
   <view class="public-detail-content">
     <view class="public-detail-body">
-      <view class="public-detail-body-title">增值税普通电子发票</view>
-      <view>
-        <mp-cell title="发票代码">
-          <view class="public-cell-right-text">
-            111111111111
-          </view>
-        </mp-cell>
-        <mp-cell title="发票号码">
-          <view class="public-cell-right-text">
-            22222222
-          </view>
-        </mp-cell>
-        <mp-cell title="校验码">
-          <view class="public-cell-right-text">
-            22222222
-          </view>
-        </mp-cell>
+      <view class="public-detail-body-content">
+        <view class="public-detail-body-title">增值税普通电子发票</view>
+        <view>
+          <label>发票代码：</label>
+          <span>1589686542</span>
+        </view>
+        <view>
+          <label>发票号码：</label>
+          <span>85693524</span>
+        </view>
+        <view>
+          <label>校验码：</label>
+          <span>856745</span>
+        </view>
+        <view class="my-divider"></view>
+        <van-collapse value="{{ activeNames }}" bind:change="onChange">
+          <van-collapse-item name="1">
+            <view slot="title">
+              <label>销方名称：</label>
+              <span>广州众智汇科技</span>
+              <van-icon name="question-o" />
+            </view>
+            <view>
+              <label>销方税号：</label>
+              <span>11111111111111111111111</span>
+            </view>
+            <view>
+              <label>销方地址：</label>
+              <span>11111111111111111111111</span>
+            </view>
+            <view>
+              <label>销方银行：</label>
+              <span>11111111111111111111111</span>
+            </view>
+          </van-collapse-item>
+          <van-collapse-item name="2">
+            <view slot="title">
+              <label>购方名称：</label>
+              <span>广州众智汇科技</span>
+              <van-icon name="question-o" />
+            </view>
+            <view>
+              <label>购方税号：</label>
+              <span>11111111111111111111111</span>
+            </view>
+            <view>
+              <label>购方地址：</label>
+              <span>11111111111111111111111</span>
+            </view>
+            <view>
+              <label>购方银行：</label>
+              <span>11111111111111111111111</span>
+            </view>
+          </van-collapse-item>
+        </van-collapse>
+        <view class="my-divider" v-if="isCurrInvType"></view>
+
+        <view>
+          <label>开票日期：</label>
+          <span>{{detailForm.invDate}}</span>
+        </view>
+        <view v-if="!isCurrInvType">
+          <label>价税合计：</label>
+          <span>{{detailForm.totalAmount}}</span>
+        </view>
+        <van-collapse value="{{ activeNames }}" bind:change="onChange">
+          <van-collapse-item name="3">
+            <view slot="title">
+              <view>
+                <label>价税合计：</label>
+                <span>{{detailForm.totalAmount}}</span>
+              </view>
+            </view>
+
+            <view>
+              <view class="tr">
+                <view>金额</view>
+                <view>税率</view>
+                <view>税额</view>
+              </view>
+              <view class="tr">
+                <view>111</view>
+                <view>111</view>
+                <view>111</view>
+              </view>
+            </view>
+          </van-collapse-item>
+        </van-collapse>
+        <view class="my-divider"></view>
+        <view>
+          <label>费用类型：</label>
+          <span>费用类型</span>
+        </view>
+        <view class="my-divider"></view>
+        <view>
+          <label>报销状态：</label>
+          <span>报销状态（待加）</span>
+        </view>
+        <view>
+          <label>发票真伪：</label>
+          <span>真发票</span>
+        </view>
+        <view>
+          <label>备注用途：</label>
+          <span>{{detailForm.note}}</span>
+        </view>
+        <view>
+          <label>所属票夹：</label>
+          <span>{{detailForm.fileName}}</span>
+        </view>
+        <view class="my-divider"></view>
+        <view>
+          <label>添加时间：</label>
+          <span>{{detailForm.createTime}}</span>
+        </view>
+        <view class="my-divider"></view>
+        <view class="public-circular-content">
+          <view class="public-circular" wx:for="{{circularNum}}" wx:key="index"></view>
+        </view>
       </view>
+    </view>
+    <view class="public-detail-bottom">
+      <button class="mini-btn" type="primary" size="mini">编辑</button>
+      <button class="mini-btn" type="primary" size="mini" bindtap="previewUrl">预览</button>
+      <button class="mini-btn" type="primary" size="mini">删除</button>
     </view>
   </view>
 </view>

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/home/detail/detail",
     "pages/folder/folder",
     "pages/about/about",
     "pages/home/home",
@@ -8,7 +9,7 @@
     
     "pages/camera/camera",
     "pages/home/manual/manual",
-    "pages/home/detail/detail",
+    
     "pages/home/checked/checked",
     "pages/about/personalSetting/personalSetting",
     "pages/about/help/help",

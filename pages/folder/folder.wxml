@@ -32,8 +32,10 @@
   </view>
 </view>
 
-<mp-dialog show="{{addDialogShow}}" title="新增发票夹" buttons="{{buttons}}">
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
+<mp-dialog show="{{addDialogShow}}" title="新增发票夹" buttons="{{buttons}}" bindbuttontap="addFolderTap">
   <mp-cell title="发票夹名字">
-    <input  class="weui-input" placeholder="请输入发票夹名字" value="{{folderName}}" bindinput="formFieldChange"/>
+    <input  class="weui-input" placeholder="请输入发票夹名字" value="{{folderName}}" bindchange="folderNameChange"/>
   </mp-cell>
 </mp-dialog>

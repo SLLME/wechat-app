@@ -24,6 +24,8 @@ Page({
     addDialogShow: false,
     buttons: [{text: '取消'}, {text: '确定'}],
     folderName: "aaaa",
+
+    error: "",
   },
 
   /**
@@ -86,5 +88,39 @@ Page({
     this.setData({
       addDialogShow: true
     })
-  }
+  },
+  /** 新增模态框的发票夹名字改变 */
+  folderNameChange(e){
+    this.setData({
+      folderName: e.detail.value
+    })
+  },
+  /** 新增模态框确认或者取消 */
+  addFolderTap(e){
+    if(e.detail.index == 0){
+      this.setData({
+        addDialogShow: false
+      })
+    }else{
+      if(this.data.folderName == ""){
+        this.setData({
+          error: "发票夹名字不能为空"
+        })
+      }else{
+        let that = this;
+        that.setData({
+          ['folderArr[' + that.data.folderArr.length + ']']: {
+            name: that.data.folderName,
+            icon: "../../images/folder/folder.png",
+            amount: 0,
+            num: 0,
+            checked: false,
+          },
+          addDialogShow: false,
+          folderName: ""
+        })
+      }
+    }
+    
+  },
 })
