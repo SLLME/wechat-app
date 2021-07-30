@@ -30,11 +30,12 @@
   flex-direction: column;
   min-width: 25%;
   max-width: 25%;
+  font-size: 12px;
 }
 .public-top-operation-item image,
 .public-central-collection-item image{
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
 }
 .public-top-operation-item view,
 .public-central-collection-item view{
@@ -45,7 +46,7 @@
 }
 .public-central-collection-title{
   width: 100%;
-  padding: 20px 20px 10px 20px;
+  padding: 20px 20px 0px 20px;
   font-size: 1.2em;
 }
 .public-bottom-head-title{
@@ -67,16 +68,67 @@
   display: flex;
   align-items: center;
   color: #338ae8;
+  font-size: 12px;
 }
 .public-bottom-head-add{
   padding: 10px 20px 10px 20px;
   color: #338ae8;
+  font-size: 12px;
 }
 .public-bottom-head image{
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
 }
 .public-bottom-head-add-operation{
   display: flex;
   align-items: center;
+}
+
+.input-title{
+  text-align: center;
+  font-size: 20px;
+  padding: 10% 0 40px 0;
+}
+.public-manualPopup-content{
+  padding: 0 20px;
+  z-index: 99;
+}
+.weui-cell__hd{
+  width: 100px;
+}
+.weui-cell__hd,
+.weui-cell__bd{
+  font-size: 16px;
+}
+.my-cell{
+  margin: 5px 20px;
+  position: relative;
+  font-size: 12px;
+}
+.my-cell+.my-cell::before{
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgb(235 237 240 / 51%);
+  z-index: 1;
+}
+
+.detail-item{
+  padding: 10px 20px;
+}
+.detail-item view{
+  display: inline-block;
+}
+.detail-item .detail-item-left{
+  width: 30%;
+}
+.detail-item-bottom{
+  text-align: center;
+}
+.button-div{
+  margin: 10% 10px;
+  display: flex;
+  justify-content: space-around;
 }

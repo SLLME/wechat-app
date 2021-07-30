@@ -3,6 +3,7 @@
 page{
   height: 100%;
   width: 100%;
+  font-size: 12px;
 }
 .container {
   height: 100%;
@@ -15,7 +16,7 @@ page{
 } 
 .app-container{
   height: 100%;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .public-center{
@@ -44,4 +45,11 @@ page{
 }
 .public-flex-buttom{
   flex: 0;
+}
+
+.weui-dialog__hd {
+  padding: 16px 24px 16px!important;
+}
+.weui-dialog__bd {
+ margin-bottom: 10px!important;
 }

@@ -1,7 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "vant-loading" : "vant-weapp/loading/index",
-    "mp-dialog": "weui-miniprogram/dialog/dialog"
+    "van-loading" : "vant-weapp/loading/index",
+    "van-overlay" : "vant-weapp/overlay/index"
   }
 }

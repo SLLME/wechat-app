@@ -3,7 +3,14 @@
     "mp-toptips": "weui-miniprogram/toptips/toptips",
     "mp-col": "@miniprogram-component-plus/col",
     "mp-row": "@miniprogram-component-plus/row",
-    "mp-icon": "weui-miniprogram/icon/icon"
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "van-icon": "vant-weapp/icon/index",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "mp-checkbox": "weui-miniprogram/checkbox/checkbox",
+    "mp-checkbox-group": "weui-miniprogram/checkbox-group/checkbox-group",
+    "mp-form": "weui-miniprogram/form/form",
+    "mp-actionSheet": "weui-miniprogram/actionsheet/actionsheet"
   },
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",

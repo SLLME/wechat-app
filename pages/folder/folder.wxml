@@ -16,7 +16,7 @@
         <view class="public-left-select-icon" wx:if="{{item.checked}}">
           <vant-icon name="success" />
         </view>
-        <image src="{{item.icon}}" mode="widthFix"/>
+        <image src="{{item.icon}}" mode="widthFix" />
         {{item.name}}
       </view>
       <view class="public-folder-content-item-right" bindtap="jumpInvoiceList">
@@ -25,7 +25,7 @@
           <view class="public-color-gray">{{item.num}}张</view>
         </view>
         <view>
-          <vant-icon name="arrow" size="1.4em"/>
+          <vant-icon name="arrow" size="1.4em" />
         </view>
       </view>
     </view>
@@ -34,8 +34,22 @@
 
 <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 
-<mp-dialog show="{{addDialogShow}}" title="新增发票夹" buttons="{{buttons}}" bindbuttontap="addFolderTap">
+<mp-dialog show="{{addDialogShow || renameDialogShow}}" title="{{dialogTitle}}" buttons="{{buttons}}"
+  bindbuttontap="addFolderTap">
   <mp-cell title="发票夹名字">
-    <input  class="weui-input" placeholder="请输入发票夹名字" value="{{folderName}}" bindchange="folderNameChange"/>
+    <input class="weui-input" placeholder="请输入发票夹名字" value="{{folderName}}" bindchange="folderNameChange" />
   </mp-cell>
 </mp-dialog>
+
+<mp-dialog show="{{operationDialogShow}}" buttons="{{buttons}}" bindbuttontap="operationFolderTap">
+  <radio-group bindchange="operationRadioChange">
+    <label class="weui-cell weui-check__label" wx:for="{{operationRadioItems}}" wx:key="index">
+      <view class="weui-cell__hd">
+        <radio value="{{item.value}}" checked="{{item.checked}}" />
+      </view>
+      <view class="weui-cell__bd">{{item.name}}</view>
+    </label>
+  </radio-group>
+</mp-dialog>
+
+<my-loading id="myLoading"></my-loading>

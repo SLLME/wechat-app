@@ -1,0 +1,21 @@
+/* pages/home/fileinput/fileinput.wxss */
+.my-weui-uploader__input-box{
+  overflow: hidden;
+  float: left;
+  position: relative;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  width: 96px;
+  height: 96px;
+  box-sizing: border-box;
+  background-color: #ededed;
+}
+.my-weui-uploader__input-box image{
+  width: 100%;
+}
+.files-body{
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

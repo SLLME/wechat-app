@@ -1,8 +1,8 @@
 <!--pages/component/loading/loading.wxml-->
-<!-- <mp-dialog title="aa" show="{{dialogShow}}" mask="true">
-  <vant-loading color="red" size="50px"></vant-loading>
-  <view>test content</view>
-</mp-dialog> -->
-<mp-dialog title="test" show="{{dialogShow}}">
-  <view>test content</view>
-</mp-dialog>
+<van-overlay show="{{show}}" class="my-loading">
+  <div class="wrapper">
+    <van-loading size="24px" vertical>{{loadingText}}</van-loading>
+  
+  </div>
+  <van-loading size="24px" vertical>加载中...</van-loading>
+</van-overlay>

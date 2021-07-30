@@ -18,7 +18,7 @@
           <mp-cell prop="totalAmountWithoutTax" title="不含税金额" ext-class="" show-error>
             <input data-field="totalAmountWithoutTax" class="weui-input" placeholder="请输入不含税金额" bindinput="formFieldChange"/>
           </mp-cell>
-          <mp-cell prop="checkCode" title="校验码后六位" ext-class="" show-error>
+          <mp-cell prop="checkCode" title="校验码" ext-class="" show-error>
             <input data-field="checkCode" class="weui-input" placeholder="请输入校验码后六位" bindinput="formFieldChange"/>
           </mp-cell>
           <mp-cell prop="totalAmount" title="价税合计" ext-class="" show-error>

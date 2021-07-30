@@ -11,6 +11,7 @@
   "dependencies": {
     "@miniprogram-component-plus/col": "^1.0.0",
     "@miniprogram-component-plus/row": "^1.0.0",
+    "@vant/weapp": "^1.7.2",
     "vant-weapp": "^0.5.29",
     "weui-miniprogram": "^1.0.8"
   }

@@ -1,1 +1,21 @@
 /* pages/component/loading/loading.wxss */
+.my-loading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}

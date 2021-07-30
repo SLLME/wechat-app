@@ -1,13 +1,18 @@
 /* pages/home/manual/manual.wxss */
 .public-manual-content{
   width: 100%;
-  padding: 20px;
+  height: 100%;
+  padding: 5px 10px;
   box-sizing: border-box;
+  background-color: rgb(204 204 204 / 50%);
+  font-size: 12px;
 }
 .public-manual-content-form{
   width: 100%;
-  border: 1px solid #cccccc80;
   border-radius: 3%;
+  background-color: white;
+  padding-bottom: 20px;
+  padding-top: 10px;
 }
 
 .my-weui-uploader__input-box{
@@ -39,4 +44,12 @@
   height: 1px;
   color: white;
   z-index: -2;
+}
+
+.weui-btn-area {
+  margin: 20px 16px;
+}
+.weui-cell{
+  padding: 8px 16px!important;
+  font-size: 14px;
 }

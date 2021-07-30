@@ -25,15 +25,73 @@
     <view class="public-bottom-head-title">
       <view>发票抬头</view>
       <view class="public-bottom-head-title-right">
-        <image src="../../images/common/qianjin.png"></image>
-        抬头管理
+        更多
+        <van-icon name="arrow" />
       </view>
     </view>
+    <mp-cells ext-class="my-cells">
+      <view class="my-cell">
+        <view class="ticket-name">这是抬头名称</view>
+        <view class="ticket-no">税号：这是税号</view>
+      </view>
+      <view class="my-cell">
+        <view class="ticket-name">这是抬头名称</view>
+        <view class="ticket-no">税号：这是税号</view>
+      </view>
+    </mp-cells>
     <view class="public-bottom-head-add">
-      <view class="public-bottom-head-add-operation">
-        <image src="../../images/common/tianjia.png"></image>
+      <view class="public-bottom-head-add-operation" bindtap="addTicketTitle">
+        <van-icon name="plus" />
         添加发票抬头
       </view>
     </view>
   </view>
 </view>
+
+<page-container show="{{ticketTitleInputShow || ticketTitleDetailShow}}" position="center">
+  <view class="public-manualPopup-content public-flex-content">
+    <block wx:if="{{ticketTitleInputShow}}">
+      <view class="input-title">填写发票抬头信息</view>
+      <mp-cells>
+        <mp-cell show-error prop="sellName" title="名称" ext-class="">
+          <input bindinput="formInputChange" data-field="sellName" class="weui-input" placeholder="抬头名称(必填)" />
+        </mp-cell>
+        <mp-cell show-error prop="sellTaxNo" title="税号" ext-class="">
+          <input bindinput="formInputChange" data-field="sellTaxNo" class="weui-input" placeholder="税号(必填)" />
+        </mp-cell>
+        <mp-cell show-error prop="sellAddrTel" title="地址及电话" ext-class="">
+          <input bindinput="formInputChange" data-field="sellAddrTel" class="weui-input" placeholder="单位地址及电话(选填)" />
+        </mp-cell>
+        <mp-cell show-error prop="sellBankAccount" title="银行及账号" ext-class="">
+          <input bindinput="formInputChange" data-field="sellBankAccount" class="weui-input"
+            placeholder="开户银行及账号(选填)" />
+        </mp-cell>
+
+      </mp-cells>
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+      </view>
+    </block>
+    <block wx:if="{{ticketTitleDetailShow}}">
+      <view class="input-title">sellName</view>
+      <view class="detail-item">
+        <view class="detail-item-left">税号</view>
+        <view>sellTaxNo</view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-item-left">地址及电话</view>
+        <view>sellAddrTel</view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-item-left">银行及账号</view>
+        <view>sellBankAccount</view>
+      </view>
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="operationTicketTitle">编辑抬头</button>
+      </view>
+    </block>
+  </view>
+</page-container>
+
+<mp-actionSheet bindactiontap="actionsheetClick" show="{{showActionsheet}}" actions="{{sheetGroups}}">
+</mp-actionSheet>

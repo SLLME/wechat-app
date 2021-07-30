@@ -1,15 +1,15 @@
 {
   "pages": [
-    "pages/home/detail/detail",
-    "pages/folder/folder",
-    "pages/about/about",
+    "pages/home/fileinput/fileinput",
     "pages/home/home",
+    "pages/folder/invoicelist/invoicelist",
+    "pages/folder/folder",
+    "pages/home/detail/detail",
+    "pages/about/about",
     "pages/index/index",
     "pages/logs/logs",
-    
     "pages/camera/camera",
     "pages/home/manual/manual",
-    
     "pages/home/checked/checked",
     "pages/about/personalSetting/personalSetting",
     "pages/about/help/help",

@@ -1,0 +1,15 @@
+<!--pages/home/fileinput/fileinput.wxml-->
+<view class="app-container">
+  <view class="public-manualPopup-content public-flex-content">
+    <view class="files-body">
+      <view class="my-weui-uploader__input-box" wx:for="{{files}}" wx:for-index="index" wx:for-item="item"
+        wx:key="index" bindtap="previewImage" data-index="{{index}}">
+        <image src="{{item}}" mode="widthFix"></image>
+      </view>
+      <view class="weui-uploader__input-box" bindtap="selectFile"></view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary">确定</button>
+  </view>
+</view>

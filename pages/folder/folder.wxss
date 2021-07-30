@@ -32,7 +32,7 @@
   align-items: center;
 }
 .public-folder-content-item-left image{
-  width: 30px;
+  width: 26px;
   margin-right: 5px;
 }
 .public-folder-content-item-right{

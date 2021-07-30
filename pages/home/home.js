@@ -60,9 +60,41 @@ Page({
         name: '携程',
         icon: "../../images/about/xiecheng.png",
       }
+    ],
+    ticketTitleInputShow: false,
+    ticketTitleDetailShow: false,
+    showActionsheet: false,
+    sheetGroups: [
+      { text: '修改', value: 1 },
+      { text: '删除', value: 2 },
     ]
   },
+  /** 添加发票抬头 */
+  addTicketTitle(){
+    this.setData({
+      ticketTitleInputShow: true
+    })
+  },
+  operationTicketTitle(){
+    this.setData({
+      showActionsheet: true
+    })
+  },
+  actionsheetClick(e){
+    console.log(e);
+    this.setData({
+      showActionsheet: false,
+    })
+    let value = e.detail.value;
+    if(value == '1'){ /** 修改 */
+      this.setData({
+        ticketTitleDetailShow: false,
+        ticketTitleInputShow: true,
+      })
+    }else{ /** 删除 */
 
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -21,18 +21,28 @@ Page({
         checked: false,
       }
     ],
+    selectedFolderArr: [],
+
+    dialogTitle: null,
     addDialogShow: false,
-    buttons: [{text: '取消'}, {text: '确定'}],
-    folderName: "aaaa",
+    buttons: [{ text: '取消' }, { text: '确定' }],
+    folderName: "",
 
     error: "",
+
+    operationRadioItems: [
+      { name: '重命名', value: '1', checked: true },
+      { name: '删除', value: '2' }
+    ],
+    operationRadio: '1',
+    renameDialogShow: false,
+    renameFolderName: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   /**
@@ -84,43 +94,84 @@ Page({
 
   },
   /** 新增按钮 */
-  addFolder(){
+  addFolder() {
     this.setData({
-      addDialogShow: true
+      addDialogShow: true,
+      dialogTitle: "新增发票夹",
     })
   },
   /** 新增模态框的发票夹名字改变 */
-  folderNameChange(e){
+  folderNameChange(e) {
     this.setData({
       folderName: e.detail.value
     })
   },
   /** 新增模态框确认或者取消 */
-  addFolderTap(e){
-    if(e.detail.index == 0){
+  addFolderTap(e) {
+    if (e.detail.index == 0) {
       this.setData({
-        addDialogShow: false
+        addDialogShow: false,
+        renameDialogShow: false,
       })
-    }else{
-      if(this.data.folderName == ""){
+    } else {
+      if (this.data.folderName == "") {
         this.setData({
           error: "发票夹名字不能为空"
         })
-      }else{
+      } else {
         let that = this;
-        that.setData({
-          ['folderArr[' + that.data.folderArr.length + ']']: {
-            name: that.data.folderName,
-            icon: "../../images/folder/folder.png",
-            amount: 0,
-            num: 0,
-            checked: false,
-          },
-          addDialogShow: false,
-          folderName: ""
-        })
+        /** 新增 */
+        if (that.data.addDialogShow) {
+          that.setData({
+            ['folderArr[' + that.data.folderArr.length + ']']: {
+              name: that.data.folderName,
+              icon: "../../images/folder/folder.png",
+              amount: 0,
+              num: 0,
+              checked: false,
+            },
+            addDialogShow: false,
+            renameDialogShow: false,
+            folderName: ""
+          })
+        }else{ /** 重命名 */
+          
+        }
       }
     }
-    
+
   },
+  /** 编辑按钮 */
+  operationFolder() {
+    this.setData({
+      operationDialogShow: true
+    })
+  },
+  operationRadioChange(e) {
+    this.setData({
+      operationRadio: e.detail.value,
+    })
+  },
+  /** 编辑模态框确定 */
+  operationFolderTap(e) {
+    if (e.detail.index == 0) {
+      this.setData({
+        operationDialogShow: false
+      })
+    } else {
+      this.setData({
+        operationDialogShow: false
+      })
+      /** 重命名 */
+      if (this.data.operationRadio == '1') {
+        this.setData({
+          renameDialogShow: true,
+          dialogTitle: "重命名"
+        })
+      } else { /** 删除 */
+
+      }
+    }
+  },
+
 })

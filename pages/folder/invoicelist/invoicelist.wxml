@@ -1,0 +1,95 @@
+<!--pages/folder/invoicelist/invoicelist.wxml-->
+<view class="app-container public-flex">
+  <view class="public-top-title public-flex-top">
+    <view class="public-top-title-div" bindtap="showFolderList">
+      <van-icon name="bar-chart-o" size="1.2em" />
+      测试数据
+    </view>
+  </view>
+  <view class="public-folder-content public-flex-content">
+    <view class="public-top-search">
+      <van-icon name="search" />
+      <input type="text" value="{{searchValue}}" placeholder="搜索" bindinput="searchValueChange" />
+    </view>
+    <view class="public-content-body">
+
+      <view class="public-content-item" wx:for="{{invoiceList.default}}" wx:key="index" bindtap="selectInvoice" data-index="{{index}}"
+        bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd">
+        <view class="public-left-select-icon" wx:if="{{bottomOperationShow}}">
+          <block wx:if="{{item.selected}}">
+            <van-icon name="success" mode="widthFix"/>
+          </block>
+          <block wx:else>
+            <van-icon name="success" mode="widthFix" style="background: grey;" />
+          </block>
+        </view>
+        <view class="public-content-item-right">
+          <view wx:if="{{isCheckEnableTicket(item.invType)}}">
+            <view class="public-content-item-top">
+              <label>购买方：</label>
+              <span>{{item.buyName}}</span>
+            </view>
+            <view class="public-content-item-middle">
+              <span>{{item.sellName}}</span>
+              <span>{{item.totalAmount ? ('￥' + item.totalAmount) : ""}}</span>
+            </view>
+            <view class="public-content-item-bottom">
+              <span style="display: inline-block;width: 30%">{{item.invDate}}</span>
+              <span class="checked-text"> {{abbrInvType(item.invType).name}}</span>
+              <span wx:if="{{item.checked == '1'}}" class="checked-text success-color">真</span>
+              <span wx:elif="{{item.checked == '3'}}" class="checked-text fail-color">失败</span>
+              <span wx:else class="checked-text no-color">未查</span>
+              <span class="checked-text"> {{reimStatusFormat(item.reimStatus)}}</span>
+            </view>
+          </view>
+          <view wx:else>
+            <view class="public-content-item-middle">
+              <span>{{item.invTypeLabel}}</span>
+              <span>{{item.totalAmount ? ('￥' + item.totalAmount) : ""}}</span>
+            </view>
+            <view class="public-content-item-bottom">
+              <span>{{item.invDate}}</span>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view wx:if="{{bottomOperationShow}}" class="bottom-operation" style="height: 60px">
+    <view class="bottom-operation-close-icon" bindtap="closeBottomOperation">
+      <van-icon name="cross" />
+    </view>
+    <view class="bottom-operation-content">
+      <view class="bottom-operation-content-item" bindtap="transferInvoice">
+        <van-icon name="exchange" />
+        <view>移动到</view>
+      </view>
+      <view class="bottom-operation-content-item" bindtap="deleteInvoice">
+        <van-icon name="delete" />
+        <view>删除</view>
+      </view>
+      <view class="bottom-operation-content-item" bindtap="handleCheckInvoice">
+        <van-icon name="delete" />查验
+      </view>
+      <view class="bottom-operation-content-item" bindtap="allCheckedChange">
+        <van-icon name="certificate" />全选
+      </view>
+    </view>
+  </view>
+</view>
+
+<van-popup show="{{ folderListPopupShow }}" position="left" bind:close="onClose" round
+  custom-style="height: 80%;width: 40%;">
+  <van-sidebar active-key="{{currFolder}}" bind:change="folderChange">
+    <van-sidebar-item wx:for="{{folderArr}}" wx:key="index">
+      <view slot="title">
+        <view class="sidebar-item-template">
+          <image src="../../../images/folder/folder.png" mode="widthFix" />
+          <span>{{item.name}}</span>
+        </view>
+      </view>
+    </van-sidebar-item>
+  </van-sidebar>
+</van-popup>

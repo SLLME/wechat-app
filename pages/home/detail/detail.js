@@ -1,4 +1,5 @@
 // pages/home/detail/detail.js
+const utils = require("../../../utils/util")
 Page({
 
   /**
@@ -7,11 +8,52 @@ Page({
   data: {
     activeNames: ['1'],
     circularNum: 0,
+    /** 编辑页面显示状态 */
+    editPopupShow: false,
+    formData: {
+      invType: '01',
+      invCode: '222'
+    },
+    rules: [
+      {
+        name: "invCode",
+        rules: [
+          { required: true, message: "请填写发票代码" },
+          {
+            validator: function (rule, value, param, models) {
+              if(!(/^(\d{10}|\d{12})$/.test(value))){
+                return rule.message;
+              }
+            }, 
+            message: "请输入正确的发票代码"
+          }
+          // { pattern: /^(\d{10}|\d{12})$/, message: "请输入正确的发票代码", trigger: "onBlur" }
+        ]
+      },
+    ],
   },
   onChange(event) {
     this.setData({
       activeNames: event.detail
     });
+  },
+  /** 编辑 */
+  editInvoice(){
+    wx.setNavigationBarTitle({title: '编辑发票'})
+    this.setData({
+      editPopupShow: true,
+    })
+  },
+  
+  formFieldChange(e) {
+    const { field } = e.currentTarget.dataset
+    this.setData({
+      [`formData.${field}`]: e.detail.value
+    })
+  },
+  submitManualForm(e){
+    console.log(e);
+    console.log(this.data.formData)
   },
   /** 预览 */
   previewUrl(){
