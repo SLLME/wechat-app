@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/home/fileanalysis/fileanalysis",
     "pages/home/fileinput/fileinput",
+    "pages/home/manual/manual",
     "pages/home/home",
     "pages/folder/invoicelist/invoicelist",
     "pages/folder/folder",
@@ -9,14 +11,15 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/camera/camera",
-    "pages/home/manual/manual",
     "pages/home/checked/checked",
     "pages/about/personalSetting/personalSetting",
     "pages/about/help/help",
     "pages/about/guide/guide",
     "pages/about/companySetting/companyDetail/companyDetail",
     "pages/about/companySetting/companySetting",
-    "pages/about/help/problemDetail/problemDetail"
+    "pages/about/help/problemDetail/problemDetail",
+    "pages/home/checked/checkedmanual/checkedmanual"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

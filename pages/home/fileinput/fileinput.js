@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    error: "",
     files: [],
 
   },
@@ -36,6 +37,31 @@ Page({
       urls: currFile,
     })
   },
+  /** 删除文件 */
+  deleteFile(e){
+    let index = e.currentTarget.dataset.index;
+    this.setData({
+      files: this.data.files.filter((_curr, i, _arr)=>{
+        if(i == index){
+          return false;
+        }
+        return true;
+      })
+    })
+  },
+  /** 上传识别 */
+  uploadDiscern(){
+    if(this.data.files.length == 0){
+      this.setData({
+        error: "请先选择文件再进行操作"
+      })
+      return false
+    }
+    wx.navigateTo({
+      url: '../fileanalysis/fileanalysis',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

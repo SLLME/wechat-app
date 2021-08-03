@@ -19,3 +19,14 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+.my-weui-uploader-close{
+  position: absolute;
+  top: -18px;
+  background: #ededed;
+  right: 0;
+  border-bottom-left-radius: 10px;
+  padding: 3px;
+}
+.my-weui-uploader-close .weui-icon {
+  vertical-align: bottom!important;
+}

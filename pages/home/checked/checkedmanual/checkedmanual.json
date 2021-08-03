@@ -10,7 +10,7 @@
   },
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "手工录入",
+  "navigationBarTitleText": "手动查验",
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light",
   "enablePullDownRefresh": false

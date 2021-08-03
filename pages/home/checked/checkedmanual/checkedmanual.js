@@ -1,5 +1,5 @@
 // pages/home/manual/manual.js
-const utils = require("../../../utils/util")
+const utils = require("../../../../utils/util")
 Page({
 
   /**
@@ -84,37 +84,14 @@ Page({
     ],
     folderIndex: 0,
     folderArr: ["默认票夹", "娃哈哈", "旺旺"],
-    folderOptions: [
+    folderOption: [
       { name: '默认票夹', value: 'default' },
       { name: '娃哈哈', value: 'wahh' },
       { name: '旺旺', value: 'ww' }
     ],
-    files: [],
-    invTypeIndex: 0,
-    invTypeArr: ["专票", "普票", "出租车发票"],
-    invTypeOptions: [
-      {value: '01'},
-      {value: '04'},
-      {value: '0100'}
-    ],
-    inputField: {
-      OrRequired: [0, 1, 1, 1, 0],
-      field: ["invCode", "invNo", "totalAmount", "invDate", "location"],
-      name: ["发票代码", "发票号码", "金额", "日期", "发票所在地"]
-    },
+    files: []
   },
-  /** 票据类型改变 */
-  invTypeChange(e){
-    let index = parseInt(e.detail.value);
-    this.setData({
-      invTypeIndex: index
-    })
-    let elData = utils.getElementFromType(this.data.invTypeOptions[index].value);
-    this.setData({
-      inputField: elData
-    })
-    console.log(elData)
-  },
+
   formFieldChange(e) {
     const { field } = e.currentTarget.dataset
     this.setData({
@@ -142,7 +119,6 @@ Page({
   selectFile() {
     var that = this;
     wx.chooseImage({
-      count: 1,
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
@@ -175,18 +151,5 @@ Page({
         })
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    /** 计算圆形个数 */
-    let date = new Date();
-    this.setData({
-      [`formData.invDate`]: date.getFullYear() + "-" + ((date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : ("0" + (date.getMonth() + 1))) + "-"
-                              + (date.getDate() > 9 ? date.getDate() : "0" + date.getDate())
-    }) 
-  },
-
+  }
 })

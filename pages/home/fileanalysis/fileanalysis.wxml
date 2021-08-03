@@ -1,0 +1,20 @@
+<!--pages/home/fileanalysis/fileanalysis.wxml-->
+<view class="app-container">
+  <view class="public-manualPopup-content">
+    <view class="public-manualPopup-content-form">
+      <swiper class="my-swiper">
+        <block wx:for="{{2}}" wx:key="*this">
+          <swiper-item>
+            <view class="swipe-delete" bindtap="swipeDelete">
+                <van-icon name="cross" />
+              </view>
+              <view class="custom-indicator">{{ swiperIndex + 1 }}/{{ navTabs.length }}</view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="">保存</button>
+    </view>
+  </view>
+</view>

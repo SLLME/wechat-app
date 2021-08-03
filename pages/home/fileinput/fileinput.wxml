@@ -4,12 +4,17 @@
     <view class="files-body">
       <view class="my-weui-uploader__input-box" wx:for="{{files}}" wx:for-index="index" wx:for-item="item"
         wx:key="index" bindtap="previewImage" data-index="{{index}}">
+        <view catchtap="deleteFile" data-index="{{index}}" class="my-weui-uploader-close">
+          <mp-icon icon="close" color="black" size="{{8}}" mode="widthFix"></mp-icon>
+        </view>
         <image src="{{item}}" mode="widthFix"></image>
       </view>
       <view class="weui-uploader__input-box" bindtap="selectFile"></view>
     </view>
   </view>
   <view class="weui-btn-area">
-    <button class="weui-btn" type="primary">确定</button>
+    <button class="weui-btn" type="primary" bindtap="uploadDiscern">确定</button>
   </view>
 </view>
+
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>

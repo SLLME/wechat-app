@@ -1,11 +1,10 @@
 {
   "usingComponents": {
-    "mp-icon": "weui-miniprogram/icon/icon",
-    "mp-toptips": "weui-miniprogram/toptips/toptips"
+    "van-icon": "vant-weapp/icon/index"
   },
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "上传识别",
+  "navigationBarTitleText": "识别结果",
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light",
   "enablePullDownRefresh": false
