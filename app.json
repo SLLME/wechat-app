@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/home/fileanalysis/fileanalysis",
-    "pages/home/fileinput/fileinput",
-    "pages/home/manual/manual",
     "pages/home/home",
+    
+    "pages/home/fileinput/fileinput",
+    "pages/home/fileanalysis/fileanalysis",
+    "pages/home/manual/manual",
     "pages/folder/invoicelist/invoicelist",
     "pages/folder/folder",
     "pages/home/detail/detail",

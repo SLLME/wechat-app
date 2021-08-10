@@ -1,4 +1,6 @@
 // pages/home/fileinput/fileinput.js
+const request = require("./../../../utils/request")
+const util = require("./../../../utils/util")
 Page({
 
   /**
@@ -8,28 +10,45 @@ Page({
     error: "",
     files: [],
 
+    operationIndex: 0,
+    discernNote: [],
+    discernResult: [
+
+    ],
   },
 
   /** 选中文件 */
   selectFile() {
-    var that = this;
-    wx.chooseImage({
-      count: 9,
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+    let that = this;
+    if(that.data.files.length >= 9){
+      this.setData({
+        error: "只能选取九个文件"
+      })
+      return;
+    }
+    wx.yx.chooseImage({
+      count: (9 - that.data.files.length),
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        let filePath = [];
+        let fsm = wx.getFileSystemManager()
+        for(let i=0,l=res.imgArray.length; i<l; i++){
+          filePath.push(res.imgArray[i].path);
+          if(res.imgArray[i].path.split(".").pop().toLowerCase() == "pdf"){
+            console.log(fsm.readFileSync(res.imgArray[i].path, 'base64'))
+          }else {
+            console.log(fsm.readFileSync(res.imgArray[i].url, 'base64'))
+          }
+        }
         that.setData({
-          files: that.data.files.concat(res.tempFilePaths)
+          files: that.data.files.concat(filePath)
         });
-        var tempImagePath = res.tempFilePaths
-        var fsm = wx.getFileSystemManager()
-        console.log(fsm.readFileSync(tempImagePath[0],'base64'))
       }
     })
   },
+  
   /** 预览图片 */
-  previewImage(e){
+  previewImage(e) {
     let index = e.currentTarget.dataset.index;
     let currFile = [];
     currFile.push(this.data.files[index]);
@@ -38,11 +57,11 @@ Page({
     })
   },
   /** 删除文件 */
-  deleteFile(e){
+  deleteFile(e) {
     let index = e.currentTarget.dataset.index;
     this.setData({
-      files: this.data.files.filter((_curr, i, _arr)=>{
-        if(i == index){
+      files: this.data.files.filter((_curr, i, _arr) => {
+        if (i == index) {
           return false;
         }
         return true;
@@ -50,16 +69,38 @@ Page({
     })
   },
   /** 上传识别 */
-  uploadDiscern(){
-    if(this.data.files.length == 0){
+  uploadDiscern() {
+    if (this.data.files.length == 0) {
       this.setData({
         error: "请先选择文件再进行操作"
       })
       return false
     }
+    this.setData({
+      operationIndex: 0,
+      discernNote: [],
+      discernResult: [],
+    })
+    this.uploadDiscernLogic();
     wx.navigateTo({
       url: '../fileanalysis/fileanalysis',
     })
+  },
+  uploadDiscernLogic() {
+    if (this.data.operationIndex < this.data.files.length) {
+      util.base64Compress().then(res => {
+
+      })
+    } else {
+      this.setData({
+        operationIndex: 0,
+        discernNote: [],
+        discernResult: [],
+      })
+      wx.navigateTo({
+        url: '../fileanalysis/fileanalysis',
+      })
+    }
   },
 
   /**
@@ -73,7 +114,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

@@ -6,7 +6,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    swiperIndex: 0,
+    navTabs: [
+      'test',
+      'test1'
+    ]
+  },
+  /** 改变swiper-item */
+  swiperChange(e){
+    this.setData({
+      swiperIndex: e.detail.current,
+    })
+  },
+  /** 删除滑块视图 */
+  swipeDelete(e){
+    if(this.data.navTabs.length <= 1){
+      /** 返回选择文件页面 */
+      wx.navigateBack({
+        delta: 1
+      })
+    }
+    let index = e.currentTarget.dataset;
+    let arr = this.data.navTabs;
+    arr.splice(index, 1);
+    this.setData({
+      navTabs: arr,
+    })
+  },
+  /** 保存 */
+  analysisFormSubmit(){
+    wx.showLoading({
+      mask: true,
+      title: '正在保存',
+    })
+    setTimeout(()=>{
+      wx.hideLoading({
+        success: (res) => {},
+      })
+    }, 2000)
   },
 
   /**

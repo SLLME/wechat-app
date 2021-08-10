@@ -1,7 +1,7 @@
 /* pages/about/companySetting/companySetting.wxss */
 .public-content-title{
   padding: 10px 12px;
-  font-size: 16px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,7 +16,7 @@
   width: 30px;
 }
 .public-content-body{
-  font-size: 16px;
+  font-size: 12px;
 }
 .public-content-body-item{
   position: relative;
@@ -45,6 +45,10 @@
 }
 .public-companysetting-bottom button{
   margin: 10px 10%!important;
+}
+.weui-cell{
+  padding: 8px 16px!important;
+  font-size: 12px!important;
 }
 .current-item .weui-cell{
   background: linear-gradient(to right, #179c16 0%,#ffffff 100%);

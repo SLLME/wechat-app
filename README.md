@@ -4,7 +4,7 @@
 # lls
 
 git add .
-git commit
+git commit "message"
 git push -u origin master
 
 #如果提交不了git 可以把url地址由https换成git

@@ -11,21 +11,25 @@ Page({
     userName: "叶良辰",
     operationNavArr:[
       {
+        id: "scan",
         name: '扫一扫',
         icon: "../../images/home/scan.png",
         route: "",
       },
       {
+        id: "camera",
         name: '拍照',
         icon: "../../images/home/camera.png",
         route: "",
       },
       {
+        id: "print",
         name: '打印',
         icon: "../../images/home/print.png",
         route: "",
       },
       {
+        id: "check",
         name: '发票查验',
         icon: "../../images/home/check.png",
         route: "checked/checked",
@@ -33,30 +37,39 @@ Page({
     ],
     collectionTypeArr: [
       {
+        id: "wechat",
         name: '微信',
         icon: "../../images/about/wx.png",
       },
       {
+        id: "alipay",
         name: '支付宝',
         icon: "../../images/about/zhifubao.png",
       },
       {
+        id: "message",
         name: '短信',
         icon: "../../images/about/short_message.png",
       },
       {
+        id: "email",
         name: '邮箱',
         icon: "../../images/about/email.png",
       },
       {
+        id: "photo",
         name: '照片',
         icon: "../../images/about/photo.png",
+        route: "fileinput/fileinput"
       }
       ,{
+        id: "manual",
         name: '手工',
         icon: "../../images/about/manual.png",
+        route: "manual/manual"
       },
       {
+        id: "ctrip",
         name: '携程',
         icon: "../../images/about/xiecheng.png",
       }
@@ -169,8 +182,16 @@ Page({
   operationJump(event){
     let item = event.currentTarget.dataset.params;
     console.log(item);
-    wx.navigateTo({
-      url: item.route,
-    })
+    if(item.route){
+      wx.navigateTo({
+        url: item.route,
+      })
+    }else if(item.id == "wechat"){
+
+    }else if(item.id == "message"){
+
+    }else if(item.id == "email"){
+
+    }
   }
 })

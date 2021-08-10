@@ -30,3 +30,9 @@
 .my-weui-uploader-close .weui-icon {
   vertical-align: bottom!important;
 }
+
+.canvas-compress {
+    position: absolute;
+    left: 0;
+    top: 1000px;
+}

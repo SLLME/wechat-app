@@ -41,3 +41,8 @@
   font-size: 12px;
   background: rgba(0, 0, 0, 0.1);
 }
+
+.swipe-item-title{
+  line-height: 40px;
+  text-align: center;
+}

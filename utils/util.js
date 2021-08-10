@@ -301,9 +301,88 @@ const compressImg = (img) => {
   return ndata;
 }
 
+/**
+ * 判断是图片还是pdf
+ * @param picSrc
+ * @return {string}
+ */
+const subStringFileTypeFromSrc = (picSrc)=>{
+  var temp = picSrc.substring(picSrc.indexOf("/") + 1);
+  var targetStr = temp.substring(0, temp.indexOf(";"));
+  return targetStr;
+}
+
+const compressImgTest = (img) => {
+  const canvas = wx.createOffscreenCanvas({type: '2d', width: img.width, height: img.height})
+  // 获取 context。注意这里必须要与创建时的 type 一致
+  const ctx = canvas.getContext('2d')
+  //瓦片canvas
+  let tCanvas = wx.createOffscreenCanvas({type: '2d', width: img.width, height: img.height})
+  let tctx = tCanvas.getContext('2d');
+  let width = img.width;
+  let height = img.height;
+  //如果图片大于四百万像素，计算压缩比并将大小压至400万以下
+  let ratio;
+  if ((ratio = (width * height) / 4000000) > 1) {
+    console.log('大于400万像素');
+    ratio = Math.sqrt(ratio);
+    width /= ratio;
+    height /= ratio;
+  } else {
+    ratio = 1;
+  }
+  // canvas.width = width;
+  // canvas.height = height;
+  // //        铺底色
+  // ctx.fillStyle = '#fff';
+  // ctx.fillRect(0, 0, canvas.width, canvas.height);
+  // //如果图片像素大于100万则使用瓦片绘制
+  let count;
+  return new Promise((resolve, reject) => {
+    let myImage = canvas.createImage();
+    myImage.src = img.path;
+    myImage.onload = function() {
+      if ((count = (width * height) / 1000000) > 1) {
+        console.log('超过100W像素');
+        count = ~~(Math.sqrt(count) + 1); //计算要分成多少块瓦片
+        //            计算每块瓦片的宽和高
+        let nw = ~~(width / count);
+        let nh = ~~(height / count);
+        tCanvas.width = nw;
+        tCanvas.height = nh;
+        for (let i = 0; i < count; i++) {
+          for (let j = 0; j < count; j++) {
+            tctx.drawImage(
+              myImage,
+              i * nw * ratio,
+              j * nh * ratio,
+              nw * ratio,
+              nh * ratio,
+              0,
+              0,
+              nw,
+              nh
+            );
+            ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh);
+          }
+        }
+      } else {
+        ctx.drawImage(myImage, 0, 0, width, height);
+      }
+      //进行最小压缩
+      let ndata = canvas.toDataURL('image/jpeg', 0.5);
+      tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0;
+      resolve(ndata);
+    };
+  });
+  
+}
+
 module.exports = {
   formatTime,
   getInvoiceTypeFromCode,
   getElementFromType,
-  base64Compress
+  base64Compress,
+  subStringFileTypeFromSrc,
+  compressImgTest
 }

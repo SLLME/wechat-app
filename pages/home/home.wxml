@@ -16,7 +16,7 @@
       采集发票
     </view>
     <view wx:for="{{collectionTypeArr}}" wx:for-index="index" wx:for-item="item" wx:key="index"
-      class="public-central-collection-item">
+      class="public-central-collection-item" bindtap="operationJump" data-params="{{item}}">
       <image src="{{item.icon}}" />
       <view>{{item.name}}</view>
     </view>

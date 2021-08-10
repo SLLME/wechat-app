@@ -14,7 +14,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   padding: 30px 0;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0 20px;
 }
 .public-central-collection{
@@ -46,7 +46,7 @@
 }
 .public-central-collection-title{
   width: 100%;
-  padding: 20px 20px 0px 20px;
+  padding: 20px 20px 10px 20px;
   font-size: 1.2em;
 }
 .public-bottom-head-title{
@@ -58,7 +58,7 @@
   margin: 20px;
   box-shadow: 0 0px 12px #b5b5b56b;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 14px;
 }
 .public-bottom-head-title{
   display: flex;
@@ -98,7 +98,7 @@
 }
 .weui-cell__hd,
 .weui-cell__bd{
-  font-size: 16px;
+  font-size: 14px;
 }
 .my-cell{
   margin: 5px 20px;
@@ -131,4 +131,15 @@
   margin: 10% 10px;
   display: flex;
   justify-content: space-around;
+}
+
+.weui-cells {
+  margin-top: 0px!important;
+}
+
+van-icon{
+  height: 12px;
+}
+.van-icon{
+  vertical-align: top;
 }
