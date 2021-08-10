@@ -12,14 +12,14 @@
   <view class="public-folder-content public-flex-content">
     <view wx:for="{{folderArr}}" wx:for-index="index" wx:for-item="item"
       class="{{item.checked ? 'public-item-select' : '' }} public-folder-content-item" wx:key="index">
-      <view class="public-folder-content-item-left" bindtap="folderSelect(index)">
+      <view class="public-folder-content-item-left" bindtap="folderSelect" data-params="{{item}}">
         <view class="public-left-select-icon" wx:if="{{item.checked}}">
           <vant-icon name="success" />
         </view>
         <image src="{{item.icon}}" mode="widthFix" />
         {{item.name}}
       </view>
-      <view class="public-folder-content-item-right" bindtap="jumpInvoiceList">
+      <view class="public-folder-content-item-right" bindtap="jumpInvoiceList" data-params="{{item}}">
         <view class="public-folder-content-item-right-left">
           <view>{{item.amount}}元</view>
           <view class="public-color-gray">{{item.num}}张</view>

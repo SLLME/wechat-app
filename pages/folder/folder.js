@@ -7,6 +7,7 @@ Page({
   data: {
     folderArr: [
       {
+        id: "1111111111111",
         name: '发票夹（默认）',
         icon: "../../images/folder/folder.png",
         amount: 2021,
@@ -14,6 +15,7 @@ Page({
         checked: false,
       },
       {
+        id: "2222222222222",
         name: '加班打滴',
         icon: "../../images/folder/folder.png",
         amount: 6666,
@@ -174,4 +176,11 @@ Page({
     }
   },
 
+  jumpInvoiceList(e){
+    console.log(e)
+    let params = e.currentTarget.dataset.params;
+    wx.navigateTo({
+      url: 'invoicelist/invoicelist?id=' + params.id,
+    })
+  },
 })

@@ -1,6 +1,7 @@
 // pages/home/home.js
 const utils = require("../../utils/util")
 const request = require("../../utils/request")
+let app = getApp();
 Page({
 
   /**
@@ -72,6 +73,12 @@ Page({
         id: "ctrip",
         name: '携程',
         icon: "../../images/about/xiecheng.png",
+      },
+      {
+        id: "more",
+        name: "更多",
+        icon: "../../images/about/more.png",
+        route: "more/more"
       }
     ],
     ticketTitleInputShow: false,
@@ -123,6 +130,7 @@ Page({
     this.setData({
       date1: "222"
     })
+    app.globalData.routeObj[this.__route__] = this;
   },
 
   /**

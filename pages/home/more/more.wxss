@@ -1,0 +1,63 @@
+/* pages/home/more/more.wxss */
+.public-morePopup-content {
+  background: rgba(204, 204, 204, 0.36);
+  font-size: 12px;
+}
+
+.tool-content {
+  background: white;
+  margin-bottom: 10px;
+}
+
+.tool-content-title,
+.ticket-content-title {
+  font-size: 1.6em;
+  padding: 10px 0 10px 10px;
+}
+
+.tool-content-body,
+.ticket-content-body {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ticket-content-body {
+  margin-top: 10px;
+}
+
+.tool-content-body-item,
+.ticket-content-body-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 33%;
+  max-width: 33%;
+}
+
+.tool-content-body-item image,
+.ticket-content-body-item image {
+  width: 28px;
+  height: 28px;
+}
+
+.tool-content-body-item view,
+.ticket-content-body-item view {
+  margin-top: 5px;
+}
+
+.tool-content-body-item,
+.ticket-content-body-item {
+  margin-bottom: 20px;
+}
+
+.ticket-content {
+  background: white;
+}
+
+van-tab{
+  min-height: 300px;
+}
+.disable-item{
+  opacity: 0.3;
+}

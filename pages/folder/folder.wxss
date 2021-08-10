@@ -36,10 +36,11 @@
   margin-right: 5px;
 }
 .public-folder-content-item-right{
+  flex: 1;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   font-size: 0.8em;
- 
 }
 .public-folder-content-item-right .vant-icon{
   /* font-size: 24px;

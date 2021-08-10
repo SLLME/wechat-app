@@ -8,6 +8,7 @@ Page({
   data: {
     folderListPopupShow: false,
     currFolder: 0,
+    folderRadio: null,
     folderArr: [
       { name: '默认发票夹一', value: 'default1' },
       { name: '默认发票夹二', value: 'default2' },
@@ -173,5 +174,12 @@ Page({
         return {
           name: "二手"}
     }
+  },
+
+  onLoad: function(e){
+    /** 获取从上一个页面传过来的发票夹ID */
+    this.setData({
+      folderRadio: e.id,
+    })
   },
 })

@@ -1,12 +1,13 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/home/more/more",
     
+    "pages/folder/folder",
     "pages/home/fileinput/fileinput",
     "pages/home/fileanalysis/fileanalysis",
     "pages/home/manual/manual",
     "pages/folder/invoicelist/invoicelist",
-    "pages/folder/folder",
     "pages/home/detail/detail",
     "pages/about/about",
     "pages/index/index",
@@ -20,7 +21,6 @@
     "pages/about/companySetting/companySetting",
     "pages/about/help/problemDetail/problemDetail",
     "pages/home/checked/checkedmanual/checkedmanual"
-    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,30 @@
+<!--pages/home/more/more.wxml-->
+<view class="app-container">
+  <view class="public-morePopup-content public-flex-content">
+    <view class="tool-content">
+      <view class="tool-content-title">工具</view>
+      <view class="tool-content-body">
+        <view wx:for="{{toolArr}}" wx:key="*this" class="tool-content-body-item" bindtap="handleOperation"
+          data-params="{{item}}">
+          <image mode="widthFix" src="{{item.icon}}" />
+          <view>{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="ticket-content">
+      <view class="ticket-content-title">收票</view>
+      <van-tabs swipeable animated active="{{ticketActive}}">
+        <van-tab wx:for="{{ticketArr}}" wx:key="*this" title="{{item.title}}">
+          <view class="ticket-content-body">
+            <view class="ticket-content-body-item {{key.disable ? 'disable-item' : ''}}" wx:for="{{item.value}}"
+              wx:key="*this" wx:for-item="key" wx:key="i" bindtap="handleOperation" data-params="{{key}}">
+              <image src="{{key.icon}}" />
+              <view>{{key.name}}</view>
+            </view>
+          </view>
+        </van-tab>
+      </van-tabs>
+    </view>
+  </view>
+</view>
