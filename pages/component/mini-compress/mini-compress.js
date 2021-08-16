@@ -77,7 +77,7 @@ Component({
                 },
               })
             }else {
-              _this.data.success({ imgs: newImgArray, isCalOk: true })
+              _this.data.success({ imgArray: nonPictureFiles, isCalOk: true })
             }
           },
         })

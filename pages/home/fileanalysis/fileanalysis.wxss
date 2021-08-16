@@ -8,9 +8,14 @@
 .public-manualPopup-content-form{
   flex: 1;
   padding: 10px;
+  /* background: rgb(204 204 204 / 50%); */
 }
 .my-swiper{
   height: 100%;
+}
+.my-swiper-item{
+  /* background: white;
+  border-radius: 5px; */
 }
 .weui-btn-area{
   margin: 40px 10px;
@@ -45,4 +50,18 @@
 .swipe-item-title{
   line-height: 40px;
   text-align: center;
+}
+
+.weui-cells:after, .weui-cells:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  color: white;
+  z-index: -2;
+}
+.weui-cell {
+  padding: 8px 16px!important;
+  font-size: 14px;
 }

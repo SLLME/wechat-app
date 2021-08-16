@@ -378,11 +378,57 @@ const compressImgTest = (img) => {
   
 }
 
+/**
+ * This is just a simple version of deep copy
+ * Has a lot of edge cases bug
+ * If you want to use a perfect deep copy, use lodash's _.cloneDeep
+ * @param {Object} source
+ * @returns {Object}
+ */
+const deepClone = (source)=>{
+  if (!source && typeof source !== 'object') {
+    throw new Error('error arguments', 'deepClone')
+  }
+  const targetObj = source.constructor === Array ? [] : {}
+  Object.keys(source).forEach(keys => {
+    if (source[keys] && typeof source[keys] === 'object') {
+      targetObj[keys] = deepClone(source[keys])
+    } else {
+      targetObj[keys] = source[keys]
+    }
+  })
+  return targetObj
+}
+
+const myDebounce = (func, delay, immediate) => {
+  let timer = null;
+  return ()=>{
+    if(immediate){
+      let callNow = !timer;
+      timer = setTimeout(()=>{
+        timer = null
+      }, delay)
+      if(callNow){
+        func();
+      }
+    }else{
+      if(timer){
+        clearTimeout(timer);
+      }
+      timer = setTimeout(()=>{
+        func();
+      }, delay)
+    }
+  }
+}
+
 module.exports = {
   formatTime,
   getInvoiceTypeFromCode,
   getElementFromType,
   base64Compress,
   subStringFileTypeFromSrc,
-  compressImgTest
+  compressImgTest,
+  deepClone,
+  myDebounce
 }

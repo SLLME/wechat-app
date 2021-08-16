@@ -7,7 +7,12 @@
         <view catchtap="deleteFile" data-index="{{index}}" class="my-weui-uploader-close">
           <mp-icon icon="close" color="black" size="{{8}}" mode="widthFix"></mp-icon>
         </view>
-        <image src="{{item}}" mode="widthFix"></image>
+        <image wx:if="{{suffixArrs[index] == 'pdf'}}" src="../../../images/checked/pdf_icon.png" mode="widthFix">
+        </image>
+        <image wx:elif="{{suffixArrs[index] == 'ofd'}}" src="../../../images/checked/ofd_icon.png" mode="widthFix">
+        </image>
+        <image wx:else src="{{item}}" mode="widthFix"></image>
+
       </view>
       <view class="weui-uploader__input-box" bindtap="selectFile"></view>
     </view>

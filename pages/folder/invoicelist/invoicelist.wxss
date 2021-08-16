@@ -18,6 +18,7 @@
   background: rgba(204, 204, 204, 0.36);
   display: flex;
   flex-direction: column;
+  margin-top: 97px;
 }
 .public-top-search{
   padding: 10px 10px;
@@ -225,8 +226,8 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
   background: white;
   z-index: 9999;
   height:60px;
-     padding-bottom: constant(safe-area-inset-bottom); /* ios < 11.2*/
-     padding-bottom: env(safe-area-inset-bottom); /* ios >= 11.2*/
+  padding-bottom: constant(safe-area-inset-bottom); /* ios < 11.2*/
+  padding-bottom: env(safe-area-inset-bottom); /* ios >= 11.2*/
 }
 
 .bottom-operation-content{
@@ -252,4 +253,31 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+/** popup弹出框边框样式调整 */
+.van-popup{
+  border-bottom-right-radius: 10px!important;
+  border-top-right-radius: 10px!important;
+}
+.van-sidebar-item {
+  padding: 10px 12px 10px 8px!important;
+}
+
+/** 让发票列表能占100%高度 */
+.position-view{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  background: white;
+}
+.weui-cell{
+  padding: 8px 16px!important;
+}
+
+/** 数据加载完成文本 */
+.public-finished-text{
+  text-align: center;
+  padding: 5px 0;
 }

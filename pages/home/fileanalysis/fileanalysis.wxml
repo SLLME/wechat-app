@@ -4,12 +4,34 @@
     <view class="public-manualPopup-content-form">
       <swiper class="my-swiper" bindchange="swiperChange">
         <block wx:for="{{navTabs}}" wx:key="*this">
-          <swiper-item>
+          <swiper-item class="my-swiper-item">
             <view class="swipe-delete" data-index="{{index}}" bindtap="swipeDelete">
-                <van-icon name="cross" />
-              </view>
-              <view class="custom-indicator">{{ swiperIndex + 1 }}/{{ navTabs.length }}</view>
-              <div class="swipe-item-title">{{item.title}}</div>
+              <van-icon name="cross" />
+            </view>
+            <view class="custom-indicator">{{ swiperIndex + 1 }}/{{ navTabs.length }}</view>
+            <view class="swipe-item-title">{{item.title}}</view>
+
+            <mp-form id="{{'imageForm' + index}}" models="{{imageInvoiceForm[index]}}">
+              <mp-cells title="" footer="">
+                <mp-cell wx:for="{{item.el.field}}" wx:for-item="part" wx:for-index="iindex" prop="{{part}}"
+                  title="{{item.el.name[iindex]}}" ext-class="" show-error wx:key="*this">
+                  <block wx:if="{{part != 'invDate'}}">
+                    <input data-field="{{part}}" value="{{imageInvoiceForm[index][part]}}" class="weui-input" bindinput="formFieldChange" />
+                  </block>
+                  <block wx:else>
+                    <picker data-field="date" mode="date" value="{{imageInvoiceForm[index].invDate}}"
+                      placeholder="请选择开票日期" bindchange="invDateChange">
+                      <view class="weui-input">{{imageInvoiceForm[index].invDate}}</view>
+                    </picker>
+                  </block>
+                </mp-cell>
+                <mp-cell prop="folder" title="所属票夹">
+                  <picker bindchange="folderChange" value="{{folderIndex}}" range="{{folderArr}}">
+                    <view class="weui-input">{{folderArr[folderIndex]}}</view>
+                  </picker>
+                </mp-cell>
+              </mp-cells>
+            </mp-form>
 
           </swiper-item>
         </block>

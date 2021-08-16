@@ -1,23 +1,27 @@
 <!--pages/folder/invoicelist/invoicelist.wxml-->
-<view class="app-container public-flex">
-  <view class="public-top-title public-flex-top">
-    <view class="public-top-title-div" bindtap="showFolderList">
-      <van-icon name="bar-chart-o" size="1.2em" />
-      测试数据
+
+<view class="app-container" style="overflow: hidden;">
+  <!-- ps: position-view导致高度坍塌了，需要创建一个BFC -->
+  <view class="position-view">
+    <view class="public-top-title public-flex-top">
+      <view class="public-top-title-div" bindtap="showFolderList">
+        <van-icon name="bar-chart-o" size="1.2em" />
+        测试数据
+      </view>
     </view>
-  </view>
-  <view class="public-folder-content public-flex-content">
+
     <view class="public-top-search">
       <van-icon name="search" />
-      <input type="text" value="{{searchValue}}" placeholder="搜索" bindinput="searchValueChange" />
+      <input type="text" value="{{searchValue}}" placeholder="搜索" bindinput="searchValueChange" bind />
     </view>
+  </view>
+  <view class="public-folder-content public-flex-content" style="height: calc(100% - 97px)">
     <view class="public-content-body">
-
-      <view class="public-content-item" wx:for="{{invoiceList.default}}" wx:key="index" bindtap="selectInvoice" data-index="{{index}}"
-        bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd">
+      <view class="public-content-item" wx:for="{{invoiceList.default}}" wx:key="index" bindtap="selectInvoice"
+        data-index="{{index}}" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd">
         <view class="public-left-select-icon" wx:if="{{bottomOperationShow}}">
           <block wx:if="{{item.selected}}">
-            <van-icon name="success" mode="widthFix"/>
+            <van-icon name="success" mode="widthFix" />
           </block>
           <block wx:else>
             <van-icon name="success" mode="widthFix" style="background: grey;" />
@@ -53,35 +57,42 @@
           </view>
         </view>
       </view>
-
+      <view class="public-finished-text" wx:if="finished">-- 已全部加载 --</view>
     </view>
-  </view>
 
-  <view wx:if="{{bottomOperationShow}}" class="bottom-operation" style="height: 60px">
-    <view class="bottom-operation-close-icon" bindtap="closeBottomOperation">
-      <van-icon name="cross" />
+    <!-- 底部操作按钮 -->
+    <view wx:if="{{bottomOperationShow}}" class="bottom-operation" style="height: 60px">
+      <view class="bottom-operation-close-icon" bindtap="closeBottomOperation">
+        <van-icon name="cross" />
+      </view>
+      <view class="bottom-operation-content">
+        <view class="bottom-operation-content-item" bindtap="transferInvoice">
+          <van-icon name="exchange" />
+          <view>移动到</view>
+        </view>
+        <view class="bottom-operation-content-item" bindtap="deleteInvoice">
+          <van-icon name="delete" />
+          <view>删除</view>
+        </view>
+        <view class="bottom-operation-content-item" bindtap="handleCheckInvoice">
+          <van-icon name="delete" />查验
+        </view>
+        <view class="bottom-operation-content-item" bindtap="allCheckedChange">
+          <van-icon name="certificate" />全选
+        </view>
+        <view class="bottom-operation-content-item" bindtap="handleShare">
+          <van-icon name="certificate" />分享
+        </view>
+      </view>
     </view>
-    <view class="bottom-operation-content">
-      <view class="bottom-operation-content-item" bindtap="transferInvoice">
-        <van-icon name="exchange" />
-        <view>移动到</view>
-      </view>
-      <view class="bottom-operation-content-item" bindtap="deleteInvoice">
-        <van-icon name="delete" />
-        <view>删除</view>
-      </view>
-      <view class="bottom-operation-content-item" bindtap="handleCheckInvoice">
-        <van-icon name="delete" />查验
-      </view>
-      <view class="bottom-operation-content-item" bindtap="allCheckedChange">
-        <van-icon name="certificate" />全选
-      </view>
+    <!-- 苹果手机黑边间距 -->
+    <view style=" height: constant(safe-area-inset-bottom);height: env(safe-area-inset-bottom);">
+
     </view>
   </view>
 </view>
 
-<van-popup show="{{ folderListPopupShow }}" position="left" bind:close="onClose" round
-  custom-style="height: 80%;width: 40%;">
+<van-popup show="{{ folderListPopupShow }}" position="left" bind:close="onClose" custom-style="height: 80%;width: 40%;">
   <van-sidebar active-key="{{currFolder}}" bind:change="folderChange">
     <van-sidebar-item wx:for="{{folderArr}}" wx:key="index">
       <view slot="title">
@@ -93,3 +104,18 @@
     </van-sidebar-item>
   </van-sidebar>
 </van-popup>
+
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
+<mp-dialog show="{{transferDialogShow}}" buttons="{{buttons}}" bindbuttontap="transferInvoiceSubmit">
+  <radio-group bindchange="transferRadioChange">
+    <label class="weui-cell weui-check__label" wx:for="{{folderArr}}" wx:key="index">
+      <view class="weui-cell__hd">
+        <radio value="{{item.value}}" />
+      </view>
+      <view class="weui-cell__bd">{{item.name}}</view>
+    </label>
+  </radio-group>
+</mp-dialog>
+
+<user-list id="userList" ></user-list>

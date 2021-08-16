@@ -6,11 +6,19 @@ Page({
    * 页面的初始数据
    */
   data: {
+    uploadResult: [],
     swiperIndex: 0,
     navTabs: [
-      'test',
-      'test1'
-    ]
+    ],
+    imageInvoiceForm: [
+    ],
+    folderIndex: 0,
+    folderArr: ["默认票夹", "娃哈哈", "旺旺"],
+    folderOptions: [
+      { name: '默认票夹', value: 'default' },
+      { name: '娃哈哈', value: 'wahh' },
+      { name: '旺旺', value: 'ww' }
+    ],
   },
   /** 改变swiper-item */
   swiperChange(e){
@@ -50,6 +58,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
+    let res = JSON.parse(options.result);
+    let resDataArr = [];
+    let i,l;
+    for(i=0,l=res.length; i<l; i++){
+      resDataArr = resDataArr.concat(res[i].data);
+    }
+    let navTabs = [];
+    let imageInvoiceForm = [];
+    for(i=0,l=resDataArr.length; i<l; i++){
+      navTabs.push({
+        type: resDataArr[i].invType,
+        el: utils.getElementFromType(resDataArr[i].invType),
+        // TODO 需要用发票类型的数据字典去格式化
+        title: resDataArr[i].invType,
+        name: "" + i
+      })
+      let currResDataItem = utils.deepClone(resDataArr[i]);
+      currResDataItem = Object.assign(currResDataItem, JSON.parse(currResDataItem['data']));
+      currResDataItem.folder = this.data.folderOptions[0].name;
+      currResDataItem.fileId = this.data.folderOptions[0].value;
+      imageInvoiceForm.push(currResDataItem);
+    }
+    
+    this.setData({
+      uploadResult: resDataArr,
+      navTabs: navTabs,
+      imageInvoiceForm: imageInvoiceForm
+    })
 
   },
 

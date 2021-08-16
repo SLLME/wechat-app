@@ -1,13 +1,12 @@
 {
   "pages": [
+    "pages/folder/invoicelist/invoicelist",
     "pages/home/home",
-    "pages/home/more/more",
-    
-    "pages/folder/folder",
     "pages/home/fileinput/fileinput",
+    "pages/home/more/more",
+    "pages/folder/folder",
     "pages/home/fileanalysis/fileanalysis",
     "pages/home/manual/manual",
-    "pages/folder/invoicelist/invoicelist",
     "pages/home/detail/detail",
     "pages/about/about",
     "pages/index/index",
@@ -20,7 +19,8 @@
     "pages/about/companySetting/companyDetail/companyDetail",
     "pages/about/companySetting/companySetting",
     "pages/about/help/problemDetail/problemDetail",
-    "pages/home/checked/checkedmanual/checkedmanual"
+    "pages/home/checked/checkedmanual/checkedmanual",
+    "pages/folder/userlist/userlist"
   ],
   "window": {
     "backgroundTextStyle": "light",
