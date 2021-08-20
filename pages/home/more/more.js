@@ -12,7 +12,7 @@ Page({
       {name: '拍照', icon: "../../../images/home/camera.png"},
       {name: '短信', icon: "../../../images/about/short_message.png"},
       {name: '文件录入', icon: "../../../images/about/photo.png",route: "../fileinput/fileinput"},
-      {name: '邮箱', icon: "../../../images/about/email.png"},
+      {name: '邮箱', icon: "../../../images/about/email.png",route: "../email/email"},
       {name: '手工', icon: "../../../images/about/manual.png",route: '../manual/manual'},
     ],
     ticketActive: 0,

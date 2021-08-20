@@ -1,2 +1,31 @@
 <!--pages/folder/userlist/userlist.wxml-->
-<text>pages/folder/userlist/userlist.wxml</text>
+<!-- <text>pages/folder/userlist/userlist.wxml</text> -->
+
+<page-container show="{{userListShow}}" position="center">
+  <view class="public-userPopup-content">
+    <view class="public-top-search">
+      <van-icon name="search" />
+      <input type="text" value="{{userSearchValue}}" placeholder="搜索" bindinput="userSearchValueChange" />
+    </view>
+    <view class="public-userPopup-content-body">
+      <block wx:if="{{ userList.length > 0 }}">
+        <mp-cells >
+          <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="userCheckboxChange">
+            <mp-checkbox wx:for="{{userList}}" wx:key="index" label="{{item.nickName}}" value="{{item.id}}"
+              checked="{{item.checked}}"></mp-checkbox>
+          </mp-checkbox-group>
+        </mp-cells>
+      </block>
+      <block wx:else>
+        <view class="public-empty-list">
+          <image src="../../../images/index/empty.png" mode="widthFix"></image>
+          <view>未查询到数据</view>
+        </view>
+      </block>
+    </view>
+    <view class="public-userPopup-content-bottom">
+      <button class="weui-btn" type="primary" bindtap="handleSubmit">确定</button>
+    </view>
+  </view>
+</page-container>
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>

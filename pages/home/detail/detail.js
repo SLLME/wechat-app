@@ -6,6 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    /** 跳转过来的发票id */
+    invoiceId: null,
+    /** 发票所在列表下标 */
+    invoiceIndex: null,
+    /** 发票id数组 */
+    invoiceIdArr: null,
+
     activeNames: ['1'],
     circularNum: 0,
     /** 编辑页面显示状态 */
@@ -32,6 +39,15 @@ Page({
       },
     ],
   },
+  /** swiper改变 */
+  swiperChange(e){
+    console.log(e);
+    this.setData({
+      invoiceIndex: e.detail.current + 1,
+    })
+    //TODO 调用获取详情接口
+  },
+  /** 折叠面板 */
   onChange(event) {
     this.setData({
       activeNames: event.detail
@@ -83,6 +99,12 @@ Page({
     let width = wx.getSystemInfoSync().windowWidth;
     this.setData({
       circularNum: parseInt((width - 80) / 30)
+    })
+    let params = JSON.parse(options.params);
+    this.setData({
+      invoiceId: params.id,
+      invoiceIndex: params.invoiceIndex,
+      invoiceIdArr: params.invoiceIdArr
     })
   },
 

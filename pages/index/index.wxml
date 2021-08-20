@@ -4,7 +4,7 @@
     <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
       <view class="userinfo-avatar" bindtap="bindViewTap">
         <open-data type="userAvatarUrl"></open-data>
-      </view>
+      </view> 
       <open-data type="userNickName"></open-data>
     </block>
     <block wx:elif="{{!hasUserInfo}}">
@@ -17,6 +17,7 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
+  <button open-type="getUserProfile" bindtap="test">授权</button>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>

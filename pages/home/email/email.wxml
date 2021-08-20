@@ -1,0 +1,57 @@
+<!--pages/home/email/email.wxml-->
+<view class="app-container">
+  <view class="public-email-content public-flex-content">
+    <view class="public-email-content-body">
+      <block wx:if="{{emailList.length > 0}}">
+        <van-swipe-cell wx:for="{{emailList}}" wx:key="*this" right-width="{{ 65 }}">
+          <view class="public-content-item" bindtap="handleEditEmail" data-index="index">
+            <view class="public-content-item-right">
+              <view class="public-content-item-absolute" catchtap="importInvoice" data-index="index">导入发票</view>
+              <view class="public-content-item-right-top">{{item.emailAccount}}</view>
+            </view>
+          </view>
+          <view slot="right" class="public-left-template">
+            <view bindtap="handleDeleteEmail" data-index="index">删除</view>
+          </view>
+        </van-swipe-cell>
+      </block>
+      <block>
+
+      </block>
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn public-width-100" type="primary" bindtap="submitManualForm">添加邮箱</button>
+    </view>
+  </view>
+</view>
+
+<mp-dialog show="{{importShow}}" title="导入邮箱发票" buttons="{{buttons}}" bindbuttontap="importSubmit">
+  <mp-cell title="起始日期">
+    <picker data-field="importDateBegin" mode="date" value="{{importForm.importDateBegin}}"  end="{{importForm.importDateEnd}}"
+    placeholder=""
+      bindchange="importDateChange">
+      <view class="weui-input">{{importForm.importDateBegin}}</view>
+    </picker>
+  </mp-cell>
+  <mp-cell title="结束日期">
+    <picker data-field="importDateEnd" mode="date" value="{{importForm.importDateEnd}}" start="{{importForm.importDateBegin}}"
+    placeholder=""
+      bindchange="importDateChange">
+      <view class="weui-input">{{importForm.importDateEnd}}</view>
+    </picker>
+  </mp-cell>
+  <mp-cell title="所属票夹">
+    <picker bindchange="folderChange" value="{{folderIndex}}" range="{{folderArr}}">
+      <view class="weui-input">{{folderArr[folderIndex]}}</view>
+    </picker>
+  </mp-cell>
+</mp-dialog>
+
+<mp-dialog show="{{addShow}}" title="{{addPopTitle}}" buttons="{{buttons}}" bindbuttontap="addSubmit">
+  <mp-cell title="邮箱账号">
+    <input data-field="emailAccount" class="weui-input" placeholder="请输入邮箱账号(必填)" bindinput="formFieldChange" />
+  </mp-cell>
+  <mp-cell title="授权密码">
+    <input data-field="emailPwd" class="weui-input" placeholder="请输入授权密码(必填)" bindinput="formFieldChange" />
+  </mp-cell>
+</mp-dialog>

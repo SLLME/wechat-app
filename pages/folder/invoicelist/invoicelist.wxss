@@ -207,6 +207,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
   justify-content: center;
   height: 100%;
   flex-direction: column;
+  font-size: 12px;
 }
 .bottom-operation-close-icon{
   width: 20px;
@@ -219,15 +220,16 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 /** 底部操作按钮 */
 .bottom-operation{
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
+  position: relative;
   bottom: 0;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background: white;
   z-index: 9999;
   height:60px;
-  padding-bottom: constant(safe-area-inset-bottom); /* ios < 11.2*/
-  padding-bottom: env(safe-area-inset-bottom); /* ios >= 11.2*/
+  /* padding-bottom: constant(safe-area-inset-bottom); ios < 11.2 */
+  /* padding-bottom: env(safe-area-inset-bottom); ios >= 11.2 */
 }
 
 .bottom-operation-content{
@@ -248,8 +250,8 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
   height: 16px;
 }
 .bottom-operation-close-icon{
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -280,4 +282,12 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .public-finished-text{
   text-align: center;
   padding: 5px 0;
+}
+
+user-list{
+  position: absolute;
+  z-index: 9999;
+}
+.weui-cells{
+  margin-top: 0px!important;
 }

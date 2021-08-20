@@ -56,6 +56,7 @@ Page({
         id: "email",
         name: '邮箱',
         icon: "../../images/about/email.png",
+        route: "email/email"
       },
       {
         id: "photo",

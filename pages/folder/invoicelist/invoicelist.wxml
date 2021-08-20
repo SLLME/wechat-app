@@ -12,7 +12,7 @@
 
     <view class="public-top-search">
       <van-icon name="search" />
-      <input type="text" value="{{searchValue}}" placeholder="搜索" bindinput="searchValueChange" bind />
+      <input type="text" value="{{searchValue}}" placeholder="搜索" bindinput="searchValueChange" />
     </view>
   </view>
   <view class="public-folder-content public-flex-content" style="height: calc(100% - 97px)">
@@ -77,16 +77,20 @@
         <view class="bottom-operation-content-item" bindtap="handleCheckInvoice">
           <van-icon name="delete" />查验
         </view>
-        <view class="bottom-operation-content-item" bindtap="allCheckedChange">
-          <van-icon name="certificate" />全选
+        <view class="bottom-operation-content-item" bindtap="handleShift">
+          <van-icon name="certificate" />转移
         </view>
         <view class="bottom-operation-content-item" bindtap="handleShare">
           <van-icon name="certificate" />分享
         </view>
+        <view class="bottom-operation-content-item" bindtap="allCheckedChange">
+          <van-icon name="certificate" />全选
+        </view>
+        
       </view>
     </view>
     <!-- 苹果手机黑边间距 -->
-    <view style=" height: constant(safe-area-inset-bottom);height: env(safe-area-inset-bottom);">
+    <view style="height: constant(safe-area-inset-bottom);height: env(safe-area-inset-bottom);">
 
     </view>
   </view>

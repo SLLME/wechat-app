@@ -1,0 +1,91 @@
+/* pages/home/email/email.wxss */
+.public-email-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: rgba(204, 204, 204, 0.36);
+  font-size: 12px;
+}
+
+.public-email-content-body {
+  flex: 1;
+}
+
+.weui-btn-area {
+  margin: 16px 16px 8px;
+  margin-bottom: calc(16px + constant(safe-area-inset-bottom));
+  /* ios < 11.2*/
+  margin-bottom: calc(16px + env(safe-area-inset-bottom));
+  /* ios >= 11.2*/
+}
+
+.public-content-item {
+  margin: 5px;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+}
+
+.public-content-item .public-content-item-right {
+  flex: 1;
+  position: relative;
+}
+
+.public-content-item .public-content-item-top {
+  color: #cccccc;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+}
+
+.public-content-item .public-content-item-middle {
+  padding: 5px 0;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.public-content-item .public-content-item-bottom {
+  padding: 5px 0;
+  color: #cccccc;
+}
+
+.public-content-item-right-top {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.public-content-item-right-bottom {
+  color: rgba(204, 204, 204, 0.8);
+}
+
+.public-content-item-absolute {
+  position: absolute;
+  right: 10px;
+  padding: 2px 10px;
+  background: #338ae8;
+  border-radius: 5px;
+  color: white;
+}
+
+.public-left-template {
+  height: 100%;
+}
+
+.public-left-template view {
+  height: 100%;
+  width: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ee0a24;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.weui-cell {
+  padding: 8px 16px!important;
+}

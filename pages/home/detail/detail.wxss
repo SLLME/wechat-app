@@ -51,6 +51,8 @@
   margin: 16px;
   display: flex;
   justify-content: space-around;
+  margin-bottom: calc(16px + constant(safe-area-inset-bottom)); /* ios < 11.2*/
+  margin-bottom: calc(16px + env(safe-area-inset-bottom)); /* ios >= 11.2*/
 }
 
 
@@ -186,4 +188,9 @@ table>tr>td {
 
 .weui-btn-area {
   margin: 20px 16px;
+}
+/** 页码 */
+.page-number{
+  text-align: center;
+  margin-top: 10px;
 }

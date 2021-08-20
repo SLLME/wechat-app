@@ -210,13 +210,20 @@ Page({
         /**
          * 当前发票id， 当前发票所在发票列表下标，发票id数组
          */
-        let id = this.data.folderArr[this.data.currFolder].value,
+        let id = this.data.invoiceList[this.data.folderArr[this.data.currFolder].value][index].id,
           invoiceIndex = index + 1,
           invoiceIdArr = this.data.invoiceList[this.data.folderArr[this.data.currFolder].value].reduce((total, curr, i, arr) => {
             total.push(curr.id);
             return total
           }, [])
-
+          let params = {
+            id,
+            invoiceIndex,
+            invoiceIdArr
+          }
+        wx.navigateTo({
+          url: './../../home/detail/detail?params=' + JSON.stringify(params),
+        })
       } else {
         let bool = this.data.invoiceList.default[index].selected;
         this.setData({
@@ -331,15 +338,44 @@ Page({
     }
   },
 
-  /** 分享 */
-  handleShare(e){
-    if (this.data.selectedInvoiceArr.length == 0) {
-      this.setData({
+  /** 转移 */
+  handleShift(e){
+    let that = this;
+    if (that.data.selectedInvoiceArr.length == 0) {
+      that.setData({
         error: "请先选择数据"
       })
       return;
     }
-    this.selectComponent("#userList").test();
+    that.selectComponent("#userList").openUserPopup(
+      that.data.selectedInvoiceArr.reduce((total, curr)=>{
+        total.push(that.data.invoiceList[that.data.folderArr[that.data.currFolder].value][curr].id);
+        return total;
+      }, []),
+      "1",
+      that.data.folderArr[that.data.currFolder].value
+    );
+    that.closeBottomOperation();
+  },
+
+  /** 分享 */
+  handleShare(e){
+    let that = this;
+    if (that.data.selectedInvoiceArr.length == 0) {
+      that.setData({
+        error: "请先选择数据"
+      })
+      return;
+    }
+    that.selectComponent("#userList").openUserPopup(
+      that.data.selectedInvoiceArr.reduce((total, curr)=>{
+        total.push(that.data.invoiceList[that.data.folderArr[that.data.currFolder].value][curr].id);
+        return total;
+      }, []),
+      "2",
+      that.data.folderArr[that.data.currFolder].value
+    );
+    that.closeBottomOperation();
   },
 
   /** 是否属于增值税 */
@@ -422,7 +458,7 @@ Page({
           title: '已加载更多',
         })
       }
-    }, 2000)
+    }, 5000)
   },
   /** 搜索 */
   searchValueChange(e) {

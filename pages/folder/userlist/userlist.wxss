@@ -1,1 +1,62 @@
 /* pages/folder/userlist/userlist.wxss */
+.public-top-search{
+  padding: 10px 10px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.8);
+  font-size: 12px;
+
+}
+.public-top-search van-icon{
+  position: absolute;
+  left: 20px;
+  display: flex;
+}
+.public-top-search input{
+  background-color: rgba(204, 204, 204, 0.54);
+  height: 36px;
+  width: 100%;
+  border-radius: 20px;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+
+.public-userPopup-content{
+  width: 100%;
+  height: 100%;
+  /* background: rgba(204, 204, 204, 0.36); */
+  display: flex;
+  flex-direction: column;
+}
+.public-userPopup-content-body{
+  flex: 1;
+  overflow: auto;
+}
+
+.public-empty-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0;
+}
+.public-empty-list image{
+  width: 160px;
+}
+.public-empty-list view{
+  margin-top: 16px;
+  color: #969799;
+}
+.public-userPopup-content-bottom{
+  padding: 16px;
+  padding-bottom: calc(16px + constant(safe-area-inset-bottom)); /* ios < 11.2*/
+  padding-bottom: calc(16px + env(safe-area-inset-bottom)); /* ios >= 11.2*/
+}
+
+mp-cell{
+  font-size: 12px;
+}
+icon{
+  transform: scale(0.8,0.8);
+}
