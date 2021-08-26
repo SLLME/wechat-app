@@ -12,27 +12,23 @@
         <mp-cells>
           <mp-cell prop="wx" title="微信号" ext-class="" show-error>
             <input data-field="wx" class="weui-input" placeholder="" bindinput="formFieldChange" value="{{personalInfoForm.wx}}" 
-            disabled="{{isEdit ? false : true}}"/>
+            disabled/>
           </mp-cell>
           <mp-cell prop="nickName" title="昵称" ext-class="" show-error>
             <input data-field="nickName" class="weui-input" placeholder="" bindinput="formFieldChange" value="{{personalInfoForm.nickName}}" 
-            disabled="{{isEdit ? false : true}}"/>
+            disabled="{{isEdit ? false : true}}" style="border: {{isEdit ? '1px solid #ccc' : 'none'}}"/>
           </mp-cell>
           <mp-cell prop="account" title="账号" ext-class="" show-error>
             <input data-field="account" class="weui-input" placeholder="" bindinput="formFieldChange" value="{{personalInfoForm.account}}" 
-            disabled="{{isEdit ? false : true}}"/>
+            disabled/>
           </mp-cell>
           <mp-cell prop="phone" title="手机" ext-class="" show-error>
             <input data-field="phone" class="weui-input" placeholder="" bindinput="formFieldChange" value="{{personalInfoForm.phone}}" 
-            disabled="{{isEdit ? false : true}}"/>
+            disabled="{{isEdit ? false : true}}" style="border: {{isEdit ? '1px solid #ccc' : 'none'}}"/>
           </mp-cell>
           <mp-cell prop="email" title="邮箱" ext-class="" show-error>
             <input data-field="email" class="weui-input" placeholder="" bindinput="formFieldChange" value="{{personalInfoForm.email}}" 
-            disabled="{{isEdit ? false : true}}"/>
-          </mp-cell>
-          <mp-cell prop="addr" title="联系地址" ext-class="" show-error>
-            <input data-field="addr" class="weui-input" placeholder="" bindinput="formFieldChange" value="{{personalInfoForm.addr}}" 
-            disabled="{{isEdit ? false : true}}"/>
+            disabled="{{isEdit ? false : true}}" style="border: {{isEdit ? '1px solid #ccc' : 'none'}}"/>
           </mp-cell>
         </mp-cells>
       </mp-form>

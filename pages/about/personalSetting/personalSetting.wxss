@@ -1,7 +1,7 @@
 /* pages/about/personalSetting/personalSetting.wxss */
 .public-content-title{
   padding: 10px 12px;
-  font-size: 16px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,10 +13,10 @@
   font-size: 1.2em;
 }
 .public-content-title image{
-  width: 30px;
+  width: 20px;
 }
 .public-content-body{
-  font-size: 16px;
+  font-size: 12px;
 }
 .public-content-body-item{
   position: relative;
@@ -50,4 +50,12 @@
   background: linear-gradient(to right, #179c16 0%,#ffffff 100%);
   color: white;
   font-weight: 600;
+}
+.weui-cell{
+  padding: 8px 16px;
+  font-size: 12px;
+}
+.weui-input{
+  border-radius: 5px;
+  padding: 0 2px;
 }

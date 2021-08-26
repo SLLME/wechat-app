@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/index/index",
+
+   
 
     "pages/home/email/email",
-    "pages/index/index",
     "pages/folder/invoicelist/invoicelist",
     "pages/home/fileinput/fileinput",
     "pages/home/more/more",

@@ -45,7 +45,7 @@ Page({
     ],
   },
   /** 修改邮箱信息 */
-  handleEditEmail(e){
+  handleEditEmail(e) {
     console.log(e);
     let index = e.currentTarget.dataset.index;
     //TODO 通过index拿到对应id，请求邮箱详情接口
@@ -57,13 +57,13 @@ Page({
   },
 
   /** 导入发票按钮 */
-  importInvoice(e){
+  importInvoice(e) {
     this.setData({
       importShow: true,
     })
   },
   /** 导入发票弹出框中日期改变 */
-  importDateChange(e){
+  importDateChange(e) {
     console.log(e);
     let value = e.detail.value;
     let field = e.currentTarget.dataset.field;
@@ -72,40 +72,56 @@ Page({
     })
   },
   /** 导入发票提交 */
-  importSubmit(e){
+  importSubmit(e) {
     if (e.detail.index == 0) {
       this.setData({
         importShow: false
       })
-    }else {
+    } else {
       this.setData({
         importShow: false
       })
     }
   },
   /** 添加邮箱按钮 */
-  submitManualForm(){
+  submitManualForm() {
     this.setData({
       addPopTitle: "新增邮箱",
       addShow: true,
     })
+    this.selectComponent(".my-swipe-cell").close();
   },
   /** 新增或修改 */
-  addSubmit(e){
+  addSubmit(e) {
     let that = this;
     if (e.detail.index == 0) {
       that.setData({
         addShow: false
       })
-    }else {
+    } else {
       that.setData({
         addShow: false
       })
-      if(that.data.addForm.id){
+      if (that.data.addForm.id) {
 
-      }else{
+      } else {
 
       }
+    }
+  },
+  handleDeleteEmail(e){
+    console.log(e);
+  },
+  onCloseCell(event) {
+    const { position, instance } = event.detail;
+    switch (position) {
+      case 'left':
+      case 'cell':
+        instance.close();
+        break;
+      case 'right':
+        instance.close();
+        break;
     }
   },
   /**

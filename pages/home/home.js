@@ -1,6 +1,7 @@
 // pages/home/home.js
 const utils = require("../../utils/util")
 const request = require("../../utils/request")
+const test = require("./../../api/test")
 let app = getApp();
 Page({
 
@@ -8,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: {},
     companyName: "广州众智汇科技有限公司",
     userName: "叶良辰",
     operationNavArr:[
@@ -121,17 +123,24 @@ Page({
    */
   onLoad: function (options) {
     console.log(utils.formatTime(new Date()));
-    request.publicRequest({
-      url: '/captchaImage',
-      method: 'get',
-      success: res=>{
-        console.log(res);
-      }
-    })
-    this.setData({
-      date1: "222"
+    test.getImage().then(res=>{
+      console.log(res);
+    }).catch(error=>{
+      console.log(error);
     })
     app.globalData.routeObj[this.__route__] = this;
+
+    wx.setStorageSync("token", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    console.log(wx.getStorageSync("token"));
+    wx.getUserProfile({
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          userInfo: res.userInfo
+        })
+      }
+    })
   },
 
   /**
@@ -158,7 +167,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
   },
 
   /**

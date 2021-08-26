@@ -21,19 +21,23 @@ function publicRequest(options){
   if(options.timestamp == undefined || options.timestamp == ""){
     options.timestamp = 600000;
   }
-  if(options.success && typeof(options.success) == "function"){
-    let successCallback = options.success;
-    options.success = res=>{
-      successCallback(res.data);
-    }
-  }
-  if(options.error && typeof(options.error) == "function"){
-    let errorCallback = options.error;
-    options.error = res =>{
-      errorCallback(res.data);
-    }
-  }
-  wx.request(options)
+  // if(options.success && typeof(options.success) == "function"){
+  //   let successCallback = options.success;
+  //   options.success = res=>{
+  //     successCallback(res.data);
+  //   }
+  // }
+  // if(options.error && typeof(options.error) == "function"){
+  //   let errorCallback = options.error;
+  //   options.error = res =>{
+  //     errorCallback(res.data);
+  //   }
+  // }
+  return wx.pro.request(options).then(res=>{
+    return Promise.resolve(res.data);
+  }).catch(error=>{
+    return Promise.reject(error);
+  })
 }
 module.exports = {
   publicRequest

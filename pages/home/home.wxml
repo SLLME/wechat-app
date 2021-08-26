@@ -1,7 +1,7 @@
 <!--pages/home/home.wxml-->
 <view class="app-container">
   <view class="public-top-title">
-    <view>{{companyName}}</view>
+    <!-- <view>{{companyName}}</view> -->
     <view>{{userName}}</view>
   </view>
   <view class="public-top-operation">

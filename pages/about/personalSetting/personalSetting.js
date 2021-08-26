@@ -78,7 +78,7 @@ Page({
   /** 编辑按钮 */
   editInfo(){
     this.setData({
-      isEdit: true
+      isEdit: !this.data.isEdit
     })
   },
   /** 修改按钮 */
