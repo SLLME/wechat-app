@@ -1,24 +1,14 @@
 <!--pages/about/help/problemDetail/problemDetail.wxml-->
 <view class="app-container public-flex">
-  <view class="public-content public-flex-content">
-    <view class="public-content-item">
-      <view class="public-content-item-title">发票不存在</view>
-      <view class="public-content-item-content">
-        <view>处理方式</view>
-        <view>处理方式</view>
-        <view>处理方式</view>
-        <view>处理方式</view>
-        <view>处理方式</view>
-      </view>
-    </view>
-    <view class="public-content-item">
-      <view class="public-content-item-title">查验异常</view>
-      <view class="public-content-item-content">
-        <view>处理方式</view>
-        <view>处理方式</view>
-        <view>处理方式</view>
-        <view>处理方式</view>
-        <view>处理方式</view>
+  <view class="public-Popup-content public-flex-content">
+    <view class="public-Popup-content-item" wx:for="{{problemArr}}" wx:key="index">
+      <view class="public-popup-content-item-title">{{item.name}}</view>
+      <view>原因如下：</view>
+      <view class="public-popup-content-item-body">
+        <view style="margin: 0px!important;" wx:for="{{item.reason}}" wx:for-index="iindex" wx:for-item="iitem" wx:key="iindex">
+          <view>{{iitem}}</view>
+          <view><span class="public-bold">解决办法：</span>{{item.solution[iindex]}}</view>
+        </view>
       </view>
     </view>
   </view>

@@ -1,18 +1,67 @@
 /* pages/about/help/problemDetail/problemDetail.wxss */
 .public-content{
-  font-size: 16px;
+  font-size: 12px;
 }
 .public-content-item{
-  padding: 0 10px;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
 }
-.public-content-item-title{
+.public-content-item .public-content-item-item:first-child{
+  padding: 15px 20px;
+}
+.public-content-item .public-content-item-item{
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8em;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.8);
+}
+
+.public-content-item view{
+  margin: 2px 0px;
+}
+.public-popup-content-item-title{
+  font-size: 1.2em;
+  font-weight: bold;
+  text-shadow: 0.5px 0px #000;
+}
+.public-popup-content-item-body{
+  padding: 0px 5px 0 15px;
+}
+.public-bold{
+  font-weight: bold;
+  text-shadow: 0.5px 0px #000;
+}
+
+.public-Popup-content{
+  font-size: 12px;
+  background: rgba(204, 204, 204, 0.36);
+  padding: 5px;
+}
+.public-Popup-content-item{
+  background: white;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.public-Popup-content-item+.public-Popup-content-item{
+  margin-top: 5px;
+}
+.public-Popup-content-item view{
+  margin: 2px 0px;
+  white-space: break-spaces;
+}
+.public-Popup-content-item-title{
   padding: 10px 10px 10px 0;
   font-size: 1.2em;
   position: relative;
   font-weight: 600;
 }
 
-.public-content-item-content{
+.public-Popup-content-item-content{
   padding: 10px 20px;
   font-weight: 600;
   position: relative;
