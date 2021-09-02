@@ -30,4 +30,5 @@
 .public-about-content-item image{
   width: 26px;
   margin-right: 10px;
+  height: auto;
 }

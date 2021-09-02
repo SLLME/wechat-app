@@ -1,10 +1,9 @@
 {
   "pages": [
     "pages/home/home",
+
+    "pages/grant/grant",
     "pages/index/index",
-
-   
-
     "pages/home/email/email",
     "pages/folder/invoicelist/invoicelist",
     "pages/home/fileinput/fileinput",
@@ -35,6 +34,7 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "tabBar": {
+    "custom": true,
     "color": "black",
     "selectedColor": "#338ae8",
     "list": [

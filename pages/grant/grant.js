@@ -1,4 +1,4 @@
-// pages/camera/camera.js
+// pages/grant/grant.js
 Page({
 
   /**
@@ -12,16 +12,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    wx.navigateBack({
-      delta: 1
-    })
+
   },
 
   /**
@@ -64,24 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  /**
-   * 点击tabBar打开一次相机
-   * @param {d} item 
-   */
-  onTabItemTap(item) {
-    var that = this;
-    wx.chooseImage({
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success: function(res) {
-        console.log(res);
-        that.setData({
-     // tempFilePath可以作为img标签的src属性显示图片
-          img: res.tempFilePaths[0],
-        })
-      }
-    })
-  },
+  }
 })

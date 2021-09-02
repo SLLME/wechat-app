@@ -141,6 +141,19 @@ Page({
         })
       }
     })
+    wx.login({
+      timeout: 0
+    }).then(res=>{
+      console.log(res)
+      let code = res.code;
+      
+    }).catch(error=>{
+      console.log(error);
+    })
+
+    /**
+     * 进来之后判断用户是否进行过授权，如果没有弹出弹窗让用户点击授权
+     */
   },
 
   /**
@@ -153,7 +166,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (typeof this.getTabBar === 'function' &&
+    this.getTabBar()) {
+    this.getTabBar().setData({
+      selected: 0
+    })
+  }
   },
 
   /**
@@ -210,5 +228,10 @@ Page({
     }else if(item.id == "email"){
 
     }
+  },
+  onTabItemTap (item) {
+    console.log(item.index)
+    console.log(item.pagePath)
+    console.log(item.text)
   }
 })

@@ -1,0 +1,14 @@
+<!--pages/grant/grant.wxml-->
+<view class="app-container">
+  <view class="loader">
+    <view class="l_main">
+      <view class="l_square"><span></span><span></span><span></span></view>
+      <view class="l_square"><span></span><span></span><span></span></view>
+      <view class="l_square"><span></span><span></span><span></span></view>
+      <view class="l_square"><span></span><span></span><span></span></view>
+      <view class="loading_text">
+        LOADING...
+      </view>
+    </view>
+  </view>
+</view>

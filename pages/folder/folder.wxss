@@ -34,6 +34,7 @@
 .public-folder-content-item-left image{ 
   width: 26px;
   margin-right: 5px;
+  height: auto;
 }
 .public-folder-content-item-right{
   flex: 1;

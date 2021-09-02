@@ -14,6 +14,7 @@
 }
 .public-content-title image{
   width: 20px;
+  height: auto;
 }
 .public-content-body{
   font-size: 12px;
