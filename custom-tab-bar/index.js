@@ -6,7 +6,7 @@ Component({
     list: [
       {
         "iconPath": "/images/index/shouye-gray.png",
-        "selectedIconPath": "/images/index/shouye-blue.png",
+        "selectedIconPath": "/images/index/shouye-gray.png",
         "pagePath": "/pages/home/home",
         "text": "首页"
       },
@@ -18,13 +18,13 @@ Component({
       },
       {
         "iconPath": "/images/index/fapiaojia-gray.png",
-        "selectedIconPath": "/images/index/fapiaojia-blue.png",
+        "selectedIconPath": "/images/index/fapiaojia-gray.png",
         "pagePath": "/pages/folder/folder",
         "text": "发票夹"
       },
       {
         "iconPath": "/images/index/wode-gray.png",
-        "selectedIconPath": "/images/index/wode-blue.png",
+        "selectedIconPath": "/images/index/wode-gray.png",
         "pagePath": "/pages/about/about",
         "text": "我的"
       }

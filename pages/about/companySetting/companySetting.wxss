@@ -14,6 +14,7 @@
 }
 .public-content-title image{
   width: 30px;
+  height: auto;
 }
 .public-content-body{
   font-size: 12px;
@@ -51,7 +52,8 @@
   font-size: 12px!important;
 }
 .current-item .weui-cell{
-  background: linear-gradient(to right, #179c16 0%,#ffffff 100%);
+  /* background: linear-gradient(to right, #179c16 0%,#ffffff 100%); */
+  background: linear-gradient(to right, #338ae8 0%,#ffffff 100%);
   color: white;
   font-weight: 600;
 }

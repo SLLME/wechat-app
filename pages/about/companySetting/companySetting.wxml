@@ -2,9 +2,9 @@
   <view class="public-companysetting-content public-flex-content">
     <view class="public-content-title">
       <view>我的公司</view>
-      <view bindtap="deleteCompany">
+      <!-- <view bindtap="deleteCompany">
         <image src="../../../images/common/shanchu.png" mode="widthFix"></image>
-      </view>
+      </view> -->
     </view>
     <view class="public-content-body">
       <mp-cells wx:if="{{isDelete}}">
@@ -27,9 +27,9 @@
       <button type="primary" plain="true" bindtap="allChecked">全选</button>
       <button type="primary" bindtap="deleteSubmit">确定</button>
     </block>
-    <block wx:else>
+    <!-- <block wx:else>
       <button type="primary" plain="true" bindtap="addCompany">添加公司</button>
-    </block>
+    </block> -->
   </div>
 </view>
 <include src="../../component/loading/loading.wxml" />
