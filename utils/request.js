@@ -1,5 +1,7 @@
-let baseUrl = "http://localhost:8089"
+let app = getApp();
+let baseUrl = app.globalData.env.baseUrl;
 
+const whiteUrl = ['/wechat/api/code2Session'];
 /**
  * 
  * @param {*} url 请求url
@@ -9,11 +11,15 @@ let baseUrl = "http://localhost:8089"
  * @param {*} fail 失败回调
  */
 function publicRequest(options){
+  if(options.header == undefined || options.header == ""){
+    // options.header = {'content-type': 'application/x-www-form-urlencoded'};
+    options.header = {'content-type': "application/json"};
+    if(wx.getStorageSync("token") && !whiteUrl.includes(options.url)){
+      options.header['Authorization'] = 'Bearer ' + wx.getStorageSync("token");
+    }
+  }
   if(options.url.indexOf("http") == -1){
     options.url = baseUrl + options.url;
-  }
-  if(options.header == undefined || options.header == ""){
-    options.header = {'content-type': 'application/json'};
   }
   if(options.method == undefined || options.method == ""){
     options.method = "get";
@@ -39,6 +45,5 @@ function publicRequest(options){
     return Promise.reject(error);
   })
 }
-module.exports = {
-  publicRequest
-}
+
+export default publicRequest;

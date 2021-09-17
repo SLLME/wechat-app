@@ -2,7 +2,7 @@
 <view class="app-container">
   <view class="public-manual-content public-flex-content">
     <view class="public-manual-content-form">
-      <mp-form id="manualForm" rules="{{rules}}" models="{{formData}}">
+      <mp-form id="manualForm" rules="{{rules}}" models="{{formData}}" >
         <mp-cells title="" footer="">
           <mp-cell prop="invType" title="票据类型">
             <picker bindchange="invTypeChange" value="{{invTypeIndex}}" range="{{invTypeArr}}">
@@ -12,7 +12,7 @@
           <mp-cell wx:for="{{inputField.field}}" prop="{{item}}" title="{{inputField.name[index]}}" ext-class=""
             show-error wx:key="index">
             <block wx:if="{{item != 'invDate'}}">
-              <input data-field="{{item}}" class="weui-input"
+              <input data-field="{{item}}" class="weui-input" value="{{formData[item]}}"
                 placeholder="{{'请输入' + inputField.name[index] + (inputField.OrRequired[index] == 1 ? '(必填)' : '(选填)')}}"
                 bindinput="formFieldChange" />
             </block>
@@ -23,37 +23,70 @@
               </picker>
             </block>
           </mp-cell>
-          <!-- <mp-cell prop="invCode" title="发票代码" ext-class="" show-error>
-            <input data-field="invCode" class="weui-input" placeholder="请输入发票代码" bindinput="formFieldChange" />
-          </mp-cell>
-          <mp-cell prop="invNo" title="发票号码" ext-class="" show-error>
-            <input data-field="invNo" class="weui-input" placeholder="请输入发票号码" bindinput="formFieldChange" />
-          </mp-cell>
-          <mp-cell prop="invDate" title="开票日期" ext-class="" show-error>
-            <picker data-field="date" mode="date" value="{{formData.invDate}}" placeholder="请选择开票日期"
-              bindchange="invDateChange">
-              <view class="weui-input">{{formData.invDate}}</view>
+
+          <van-collapse value="{{ activeNames }}" class="my-collapse" wx:if="{{formData.isVAT}}" bind:change="onChange">
+            <van-collapse-item name="1">
+              <view slot="title">
+                销方信息：
+              </view>
+              <mp-cell title="销方名称">
+                <textarea data-field="sellName" auto-height
+                  value="{{formData.sellName}}" bindinput="formFieldChange" />
+              </mp-cell>
+              <mp-cell title="销方税号">
+                <textarea data-field="sellTaxNo" auto-height
+                  value="{{formData.sellTaxNo}}" bindinput="formFieldChange" />
+              </mp-cell>
+              <mp-cell title="销方地址">
+                <textarea data-field="sellAddrTel" auto-height
+                  value="{{formData.sellAddrTel}}" bindinput="formFieldChange" />
+              </mp-cell>
+              <mp-cell title="销方银行">
+                <textarea data-field="sellBankAccount" auto-height
+                  value="{{formData.sellBankAccount}}" bindinput="formFieldChange" />
+              </mp-cell>
+            </van-collapse-item>
+            <van-collapse-item name="2">
+              <view slot="title">
+                购方信息：
+              </view>
+              <mp-cell title="购方名称">
+                <textarea data-field="buyName" auto-height
+                  value="{{formData.buyName}}" bindinput="formFieldChange" />
+              </mp-cell>
+              <mp-cell title="购方税号">
+                <textarea data-field="buyTaxNo" auto-height
+                  value="{{formData.buyTaxNo}}" bindinput="formFieldChange" />
+              </mp-cell>
+              <mp-cell title="购方地址">
+                <textarea data-field="buyAddrTel" auto-height
+                  value="{{formData.buyAddrTel}}" bindinput="formFieldChange" />
+              </mp-cell>
+              <mp-cell title="购方银行">
+                <textarea data-field="buyBankAccount" auto-height
+                  value="{{formData.buyBankAccount}}" bindinput="formFieldChange" />
+              </mp-cell>
+            </van-collapse-item>
+          </van-collapse>
+
+          <mp-cell prop="formName" title="发票联次">
+            <picker bindchange="formNameChange" value="{{formNameIndex}}" range="{{invJointArr}}">
+              <view class="weui-input">{{invJointOptions[formNameIndex].dictLabel}}</view>
             </picker>
           </mp-cell>
-          <mp-cell prop="totalAmountWithoutTax" title="不含税金额" ext-class="" show-error>
-            <input data-field="totalAmountWithoutTax" class="weui-input" placeholder="请输入不含税金额"
-              bindinput="formFieldChange" />
-          </mp-cell>
-          <mp-cell prop="checkCode" title="校验码" ext-class="" show-error>
-            <input data-field="checkCode" class="weui-input" placeholder="请输入校验码后六位" bindinput="formFieldChange" />
-          </mp-cell>
-          <mp-cell prop="totalAmount" title="价税合计" ext-class="" show-error>
-            <input data-field="totalAmount" class="weui-input" placeholder="请输入价税合计" bindinput="formFieldChange" />
-          </mp-cell> -->
           <mp-cell prop="folder" title="所属票夹">
             <picker bindchange="folderChange" value="{{folderIndex}}" range="{{folderArr}}">
               <view class="weui-input">{{folderArr[folderIndex]}}</view>
             </picker>
           </mp-cell>
           <mp-cell title="文件上传" prop="files">
-            <view class="my-weui-uploader__input-box" wx:for="{{formData.files}}" wx:for-index="index"
+            <view class="my-weui-uploader__input-box" wx:for="{{files}}" wx:for-index="index"
               wx:for-item="item" wx:key="index" bindtap="previewImage" data-index="{{index}}">
-              <image src="{{item}}" mode="widthFix"></image>
+              <image wx:if="{{suffixArrs[index] == 'pdf'}}" src="../../../images/checked/pdf_icon.png" mode="widthFix">
+              </image>
+              <image wx:elif="{{suffixArrs[index] == 'ofd'}}" src="../../../images/checked/ofd_icon.png" mode="widthFix">
+              </image>
+              <image wx:else src="{{item}}" mode="widthFix"></image>
             </view>
             <view class="weui-uploader__input-box" bindtap="selectFile">
 
@@ -70,3 +103,5 @@
   </view>
   <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 </view>
+
+<mini-compress></mini-compress>

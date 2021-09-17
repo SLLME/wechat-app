@@ -1,8 +1,16 @@
 <!--pages/about/about.wxml-->
 <view class="app-container public-flex">
   <view class="public-top-title public-flex-top">
-    <view class="public-top-title-left">{{userName}}</view>
-    <view class="public-top-title-right">{{telephone}}</view>
+    <block wx:if="{{hasUserInfo}}">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <view>
+        <view class="public-top-title-left">{{userInfo.nickName}}</view>
+        <!-- <view class="public-top-title-right">{{userInfo.nickName}}</view> -->
+      </view>
+    </block>
+    <block wx:else>
+      <button bindtap="getUserProfile"> 获取头像昵称 </button>
+    </block>
   </view>
   <view class="public-about-content public-flex-content">
     <view class="public-about-content-item" wx:for="{{aboutArr}}" wx:for-index="index" wx:for-item="item" wx:key="index"

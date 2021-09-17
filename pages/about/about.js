@@ -1,4 +1,6 @@
 // pages/about/about.js
+const app = getApp();
+import { code2Session } from "./../../api/authorizedLogin"
 Page({
 
   /**
@@ -8,11 +10,11 @@ Page({
     userName: "叶良辰",
     telephone: "18273733315",
     aboutArr: [
-      {
-        name: '公司设置',
-        icon: "../../images/about/company_setting.png",
-        path: 'companySetting/companySetting',
-      },
+      // {
+      //   name: '公司设置',
+      //   icon: "../../images/about/company_setting.png",
+      //   path: 'companySetting/companySetting',
+      // },
       {
         name: '个人设置',
         icon: "../../images/about/personal_setting.png",
@@ -28,7 +30,48 @@ Page({
         icon: "../../images/about/guide.png",
         path: 'guide/guide'
       }
-    ]
+    ],
+    userInfo: null,
+    hasUserInfo: false,
+  },
+
+  getUserProfile(e) {
+    wx.getUserProfile({
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log(res)
+        app.globalData.userInfo = res.userInfo;
+        app.globalData.hasUserInfo = true;
+        wx.setStorageSync('userInfo', res.userInfo);
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true,
+        })
+        let params = {
+          code: app.globalData.code,
+          signature: res.signature,
+          rawData: res.rawData,
+          encryptedData: res.encryptedData,
+          iv: res.iv
+        }
+        code2Session(params).then(res=>{
+          if(res.code == 200){
+            wx.setStorageSync('token', res.data);
+          }else{
+            wx.showToast({
+              title: res.msg,
+              icon: 'none',
+            })
+          }
+        })
+      },
+      fail: (error)=>{
+        wx.showToast({
+          title: '取消授权',
+          icon: 'none',
+        })
+      }
+    })
   },
 
   /**
@@ -37,6 +80,10 @@ Page({
   onLoad: function (options) {
     wx.showLoading({
       title: '加载中',
+    })
+    this.setData({
+      userInfo: wx.getStorageSync('userInfo'),
+      hasUserInfo: wx.getStorageSync('userInfo') ? true : false,
     })
   },
 

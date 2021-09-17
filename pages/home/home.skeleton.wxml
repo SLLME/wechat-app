@@ -1,0 +1,115 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/9/13 下午2:56:34
+使用方法：
+在 E:\idea\etaxcloud\zzh-mini-app-ui\pages\home\home.wxml 引入模板
+
+```
+<import src="home.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 E:\idea\etaxcloud\zzh-mini-app-ui\pages\home\home.wxss 中引入样式
+```
+@import "./home.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="app-container">
+      <view class="public-top-title">
+        <view class="sk-transparent sk-text-18-7500-692 sk-text">广州众智汇科技有限公司</view>
+        <view class="sk-transparent sk-text-18-7500-604 sk-text">叶良辰</view>
+      </view>
+      <view class="public-top-operation">
+        <view class="public-top-operation-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-728 sk-text">扫一扫</view>
+        </view>
+        <view class="public-top-operation-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-929 sk-text">拍照</view>
+        </view>
+        <view class="public-top-operation-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-164 sk-text">打印</view>
+        </view>
+        <view class="public-top-operation-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-607 sk-text">发票查验</view>
+        </view>
+      </view>
+      <view class="public-central-collection">
+        <view class="public-central-collection-title sk-transparent sk-text-18-7500-747 sk-text">
+          采集发票
+        </view>
+        <view class="public-central-collection-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-570 sk-text">微信</view>
+        </view>
+        <view class="public-central-collection-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-775 sk-text">支付宝</view>
+        </view>
+        <view class="public-central-collection-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-664 sk-text">短信</view>
+        </view>
+        <view class="public-central-collection-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-279 sk-text">邮箱</view>
+        </view>
+        <view class="public-central-collection-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-444 sk-text">照片</view>
+        </view>
+        <view class="public-central-collection-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-816 sk-text">手工</view>
+        </view>
+        <view class="public-central-collection-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-427 sk-text">携程</view>
+        </view>
+        <view class="public-central-collection-item" data-params="[object Object]">
+          <image class="sk-image"></image>
+          <view class="sk-transparent sk-text-18-7500-926 sk-text">更多</view>
+        </view>
+      </view>
+      <view class="public-bottom-head">
+        <view class="public-bottom-head-title">
+          <view class="sk-transparent sk-text-18-7500-652 sk-text">发票抬头</view>
+          <view class="public-bottom-head-title-right sk-transparent">
+            更多
+            <view is="miniprogram_npm/vant-weapp/icon/index">
+              <view class="van-icon icon-index--van-icon van-icon-arrow icon-index--van-icon-arrow sk-pseudo sk-pseudo-circle" style="true"></view>
+            </view>
+          </view>
+        </view>
+        <view is="miniprogram_npm/weui-miniprogram/cells/cells">
+          <view class="my-cells cells--my-cells weui-cells__group cells--weui-cells__group">
+            <view class="weui-cells cells--weui-cells weui-cells_after-title cells--weui-cells_after-title sk-pseudo sk-pseudo-circle">
+              <view class="my-cell">
+                <view class="ticket-name sk-transparent sk-text-14-5834-280 sk-text">这是抬头名称</view>
+                <view class="ticket-no sk-transparent sk-text-14-5834-227 sk-text">税号：这是税号</view>
+              </view>
+              <view class="my-cell sk-pseudo sk-pseudo-circle">
+                <view class="ticket-name sk-transparent sk-text-14-5834-907 sk-text">这是抬头名称</view>
+                <view class="ticket-no sk-transparent sk-text-14-5834-759 sk-text">税号：这是税号</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="public-bottom-head-add">
+          <view class="public-bottom-head-add-operation sk-transparent">
+            <view is="miniprogram_npm/vant-weapp/icon/index">
+              <view class="van-icon icon-index--van-icon van-icon-plus icon-index--van-icon-plus sk-pseudo sk-pseudo-circle" style="true"></view>
+            </view>
+            添加发票抬头
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

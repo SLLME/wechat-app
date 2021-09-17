@@ -10,7 +10,9 @@
     "mp-checkbox": "weui-miniprogram/checkbox/checkbox",
     "mp-checkbox-group": "weui-miniprogram/checkbox-group/checkbox-group",
     "mp-form": "weui-miniprogram/form/form",
-    "mp-actionSheet": "weui-miniprogram/actionsheet/actionsheet"
+    "mp-actionSheet": "weui-miniprogram/actionsheet/actionsheet",
+    "mp-dialog": "weui-miniprogram/dialog/dialog",
+    "mini-compress": "./../component/mini-compress/mini-compress"
   },
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",

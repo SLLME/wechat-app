@@ -5,8 +5,8 @@
   <view class="position-view">
     <view class="public-top-title public-flex-top">
       <view class="public-top-title-div" bindtap="showFolderList">
-        <van-icon name="bar-chart-o" size="1.2em" />
-        测试数据
+        <image src="../../../images/folder/folder.png" mode="widthFix" />
+        {{folderArr[currFolder].name}}
       </view>
     </view>
 
@@ -17,47 +17,55 @@
   </view>
   <view class="public-folder-content public-flex-content" style="height: calc(100% - 97px)">
     <view class="public-content-body">
-      <view class="public-content-item" wx:for="{{invoiceList.default}}" wx:key="index" bindtap="selectInvoice"
-        data-index="{{index}}" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd">
-        <view class="public-left-select-icon" wx:if="{{bottomOperationShow}}">
-          <block wx:if="{{item.selected}}">
-            <van-icon name="success" mode="widthFix" />
-          </block>
-          <block wx:else>
-            <van-icon name="success" mode="widthFix" style="background: grey;" />
-          </block>
-        </view>
-        <view class="public-content-item-right">
-          <view wx:if="{{isCheckEnableTicket(item.invType)}}">
-            <view class="public-content-item-top">
-              <label>购买方：</label>
-              <span>{{item.buyName}}</span>
+      <block wx:if="{{invoiceList[folderRadio].length > 0}}">
+        <view class="public-content-item" wx:for="{{invoiceList[folderArr[currFolder].value]}}" wx:key="index" bindtap="selectInvoice"
+          data-index="{{index}}" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd">
+          <view class="public-left-select-icon" wx:if="{{bottomOperationShow}}">
+            <block wx:if="{{item.selected}}">
+              <van-icon name="success" mode="widthFix" />
+            </block>
+            <block wx:else>
+              <van-icon name="success" mode="widthFix" style="background: grey;" />
+            </block>
+          </view>
+          <view class="public-content-item-right">
+            <view wx:if="{{item.isVAT}}">
+              <view class="public-content-item-top">
+                <label>购买方：</label>
+                <span>{{item.buyName}}</span>
+              </view>
+              <view class="public-content-item-middle">
+                <span>{{item.sellName}}</span>
+                <span>{{item.totalAmount ? ('￥' + item.totalAmount) : ""}}</span>
+              </view>
+              <view class="public-content-item-bottom">
+                <span style="display: inline-block;width: 30%">{{item.invDate}}</span>
+                <span class="checked-text"> {{abbrInvType(item.invType).name}}</span>
+                <span wx:if="{{item.checked == '1'}}" class="checked-text success-color">真</span>
+                <span wx:elif="{{item.checked == '3'}}" class="checked-text fail-color">失败</span>
+                <span wx:else class="checked-text no-color">未查</span>
+                <span class="checked-text"> {{reimStatusFormat(item.reimStatus)}}</span>
+              </view>
             </view>
-            <view class="public-content-item-middle">
-              <span>{{item.sellName}}</span>
-              <span>{{item.totalAmount ? ('￥' + item.totalAmount) : ""}}</span>
-            </view>
-            <view class="public-content-item-bottom">
-              <span style="display: inline-block;width: 30%">{{item.invDate}}</span>
-              <span class="checked-text"> {{abbrInvType(item.invType).name}}</span>
-              <span wx:if="{{item.checked == '1'}}" class="checked-text success-color">真</span>
-              <span wx:elif="{{item.checked == '3'}}" class="checked-text fail-color">失败</span>
-              <span wx:else class="checked-text no-color">未查</span>
-              <span class="checked-text"> {{reimStatusFormat(item.reimStatus)}}</span>
+            <view wx:else>
+              <view class="public-content-item-middle">
+                <span>{{item.invTypeLabel}}</span>
+                <span>{{item.totalAmount ? ('￥' + item.totalAmount) : ""}}</span>
+              </view>
+              <view class="public-content-item-bottom" wx:if="{{item.invDate}}">
+                <span>{{item.invDate}}</span>
+              </view>
             </view>
           </view>
-          <view wx:else>
-            <view class="public-content-item-middle">
-              <span>{{item.invTypeLabel}}</span>
-              <span>{{item.totalAmount ? ('￥' + item.totalAmount) : ""}}</span>
-            </view>
-            <view class="public-content-item-bottom">
-              <span>{{item.invDate}}</span>
-            </view>
-          </view>
         </view>
-      </view>
-      <view class="public-finished-text" wx:if="finished">-- 已全部加载 --</view>
+        <view class="public-finished-text" wx:if="{{finished}}">-- 已全部加载 --</view>
+      </block>
+      <block wx:else>
+        <view class="public-empty-list">
+          <image src="../../../images/index/empty.png" mode="widthFix"></image>
+          <view>无数据显示</view>
+        </view>
+      </block>
     </view>
 
     <!-- 底部操作按钮 -->
@@ -107,7 +115,7 @@
       </view>
     </van-sidebar-item>
   </van-sidebar>
-</van-popup>
+</van-popup> 
 
 <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 
@@ -115,7 +123,7 @@
   <radio-group bindchange="transferRadioChange">
     <label class="weui-cell weui-check__label" wx:for="{{folderArr}}" wx:key="index">
       <view class="weui-cell__hd">
-        <radio value="{{item.value}}" />
+        <radio value="{{item.value}}" checked="{{transferDialogSelectFolder == item.value}}" disabled="{{item.value == folderRadio}}"/>
       </view>
       <view class="weui-cell__bd">{{item.name}}</view>
     </label>

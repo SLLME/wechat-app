@@ -1,6 +1,7 @@
 // pages/home/fileinput/fileinput.js
-const request = require("./../../../utils/request")
 const util = require("./../../../utils/util")
+import { ocrDiscernFile } from "../../../api/discern/discern"
+const app = getApp();
 Page({
 
   /**
@@ -12,6 +13,8 @@ Page({
     baseArrs: [],
     suffixArrs: [],
     operationIndex: 0,
+    successDiscern: 0,
+    failDiscern: 0,
     discernNote: [],
     discernResult: [
 
@@ -108,33 +111,27 @@ Page({
   },
   uploadDiscernLogic() {
     if (this.data.operationIndex < this.data.files.length) {
-      // TODO 文件识别接口
-      setTimeout(()=>{
-        
-      }, 2000)
-      let formData = {},
-      baseArray = [];
+      let formData = {
+        mustOcr: '1',
+      },
+          baseArray = [];
       baseArray.push(this.data.baseArrs[this.data.operationIndex]);
       formData.baseArray = baseArray;
-      request.publicRequest({
-        url: '/income/zzsinvoice/discernFile2',
-        method: 'post',
-        data: formData,
-        success: res=>{
-          let discernResult = this.data.discernResult;
-          discernResult.push(res);
-          this.setData({
-            operationIndex: this.data.operationIndex + 1,
-            discernResult: discernResult
-          })
-          this.uploadDiscernLogic();
-        },
-        error: res=>{
-          this.setData({
-            operationIndex: this.data.operationIndex + 1,
-          })
-          this.uploadDiscernLogic();
-        }
+      ocrDiscernFile(formData).then(res=>{
+        let discernResult = this.data.discernResult;
+        discernResult.push(res);
+        this.setData({
+          operationIndex: this.data.operationIndex + 1,
+          discernResult: discernResult,
+          successDiscern: this.data.successDiscern + 1
+        })
+        this.uploadDiscernLogic();
+      }).catch(()=>{
+        this.setData({
+          operationIndex: this.data.operationIndex + 1,
+          failDiscern: this.data.failDiscern + 1,
+        })
+        this.uploadDiscernLogic();
       })
       /** 返回数据中文乱码，未找到解决办法 */
       // wx.uploadFile({
@@ -155,14 +152,17 @@ Page({
       //   }
       // })
     } else {
-      wx.hideLoading({
-        success: (res) => {},
-      })
+      wx.hideLoading();
+      app.myShowToast("本次识别成功" + this.data.successDiscern + "张，识别失败" + this.data.failDiscern + "张");
+      app.globalData.discernResult = this.data.discernResult;
       wx.navigateTo({
-        url: '../fileanalysis/fileanalysis?result=' + JSON.stringify(this.data.discernResult),
+        // url: '../fileanalysis/fileanalysis?result=' + JSON.stringify(this.data.discernResult),
+        url: '../fileanalysis/fileanalysis',
       })
       this.setData({
         operationIndex: 0,
+        successDiscern: 0,
+        failDiscern: 0,
         discernNote: [],
         discernResult: [],
         files: [],

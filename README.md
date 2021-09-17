@@ -1,4 +1,4 @@
-# wechat-app
+# zzh-mini-app
 微信小程序测试
  
 # lls

@@ -86,38 +86,38 @@ const getElementFromType = (type) => {
   /** 二手车（15） */
   const secondHandInvoice = {
     name: ["票据代码", "票据号码", "票据日期", "价税合计"],
-    field: ["invCode", "invNo", "invDate", "totalAmount"],
+    field: ["invCode", "invNo", "invDate", "totalMoney"],
     OrRequired: [1, 1, 1, 1],
   }
 
   /** 出租车发票（0100） */
   const taxiInvoice = {
     name: ["发票代码", "发票号码", "金额", "日期", "发票所在地"],
-    field: ["invCode", "invNo", "totalAmount", "invDate", "location"],
+    field: ["invCode", "invNo", "totalMoney", "invDate", "location"],
     OrRequired: [0, 1, 1, 1, 0]
   }
   /** 火车票（0101） */
   const trainInvoice = {
     name: ["火车票红色编码", "出发地", "目的地", "金额", "乘车时间", "乘客身份证", "乘客名称", "火车票ID"],
-    field: ["invNo", "departureStation", "arrivalStation", "totalAmount", "invDate", "buyTaxNo", "buyName", "ticketId"],
+    field: ["invNo", "departureStation", "arrivalStation", "totalMoney", "invDate", "buyTaxNo", "buyName", "ticketId"],
     OrRequired: [1, 0, 0, 1, 1, 1, 1, 0]
   }
   /** 客运汽车票（0102） */
   const passengerCarInvoice = {
     name: ["发票代码", "发票号码", "日期", "金额", "时间"],
-    field: ["invCode", "invNo", "invDate", "totalAmount", "invTime"],
+    field: ["invCode", "invNo", "invDate", "totalMoney", "invTime"],
     OrRequired: [0, 1, 1, 1, 0]
   }
   /** 航空运输电子客票行程单（0103） */
   const airTransportInvoice = {
     name: ["旅客姓名", "身份证号码", "票价", "民航发展基金", "燃油附加费", "其他税费", "合计金额", "电子客票号码", "填开日期", "可抵扣金额", "印刷序号", "出发地", "目的地", "乘车时间"],
-    field: ["buyName", "buyTaxNo", "fare", "civilAviationFund", "fuelSurcharge", "otherTaxes", "totalAmount", "invNo", "invDate", "kdkje", "serialNo", "departureStation", "arrivalStation", "boardingTime"],
+    field: ["buyName", "buyTaxNo", "fare", "civilAviationFund", "fuelSurcharge", "otherTaxes", "totalMoney", "invNo", "invDate", "kdkje", "serialNo", "departureStation", "arrivalStation", "boardingTime"],
     OrRequired: [1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1]
   }
   /** 船运客票（0104） */
   const shippingInvoice = {
     name: ["发票代码", "发票号码", "日期", "金额", "时间"],
-    field: ["invCode", "invNo", "invDate", "totalAmount", "invTime"],
+    field: ["invCode", "invNo", "invDate", "totalMoney", "invTime"],
     OrRequired: [0, 1, 1, 1, 0]
   }
   /** 滴滴出行行程单（0105）*/
@@ -129,19 +129,19 @@ const getElementFromType = (type) => {
   /** 过路费发票（0106） */
   const vehicleTollInvoice = {
     name: ["发票代码", "发票号码", "日期", "金额", "时间"],
-    field: ["invCode", "invNo", "invDate", "totalAmount", "invTime"],
+    field: ["invCode", "invNo", "invDate", "totalMoney", "invTime"],
     OrRequired: [0, 1, 1, 1, 0]
   }
   /** 定额发票（0001） */
   const quotaInvoice = {
-    name: ["发票代码", "发票号码", "金额（小写）", "金额（大写）", /*"日期",*/"发票所在地"],
-    field: ["invCode", "invNo", "totalAmount", "totalMoneyUp", /*"invDate",*/"location"],
-    OrRequired: [0, 1, 1, 0, /*1,*/0]
+    name: ["发票代码", "发票号码", "金额", /*"金额（大写）",*/ /*"日期",*/"发票所在地"],
+    field: ["invCode", "invNo", "totalMoney", /*"totalMoneyUp",*/ /*"invDate",*/"location"],
+    OrRequired: [0, 1, 1, /*0, *//*1,*/0]
   }
   /** 通用机打发票（0002） */
   const generalMachineInvoice = {
     name: ["发票代码", "发票号码", "金额", "日期", "发票所在地", "购方名称", "购方税号", "销方名称", "销方税号"],
-    field: ["invCode", "invNo", "totalAmount", "invDate", "location", "buyName", "buyTaxNo", "sellName", "sellTaxNo"],
+    field: ["invCode", "invNo", "totalMoney", "invDate", "location", "buyName", "buyTaxNo", "sellName", "sellTaxNo"],
     OrRequired: [0, 1, 1, 1, 0]
   }
   /** 完税证明（0003） */
@@ -159,13 +159,13 @@ const getElementFromType = (type) => {
   /** 国际小票（0005） */
   const internationalInvoice = {
     name: ["票据号码", "票据日期", "金额", "购方名称", "销方名称", "未税金额"],
-    field: ["invNo", "invDate", "totalAmount", "buyName", "sellName", "totalWithoutTaxMoney"],
+    field: ["invNo", "invDate", "totalMoney", "buyName", "sellName", "totalWithoutTaxMoney"],
     OrRequired: [1, 1, 1, 0, 0, 1]
   }
   /** 其他票据（99） */
   const otherInvoice = {
     name: ["票据号码", "票据日期", "金额", "购方名称", "销方名称"],
-    field: ["invNo", "invDate", "totalAmount", "buyName", "sellName"],
+    field: ["invNo", "invDate", "totalMoney", "buyName", "sellName"],
     OrRequired: [0, 1, 1, 0, 0],
   }
   const getInvoiceForType = {
@@ -422,6 +422,22 @@ const myDebounce = (func, delay, immediate) => {
     }
   }
 }
+// 回显数据字典
+const selectDictLabel = (datas, value) => {
+  var actions = [];
+  Object.keys(datas).some((key) => {
+    if (datas[key].dictValue == ('' + value)) {
+      actions.push(datas[key].dictLabel);
+      return true;
+    }
+  })
+  return actions.join('');
+}
+
+// 格式化发票类型
+const invTypeFormat = (invType, invTypeOptions) => {
+  return selectDictLabel(invTypeOptions, invType);
+}
 
 module.exports = {
   formatTime,
@@ -431,5 +447,7 @@ module.exports = {
   subStringFileTypeFromSrc,
   compressImgTest,
   deepClone,
-  myDebounce
+  myDebounce,
+  selectDictLabel,
+  invTypeFormat
 }

@@ -1,6 +1,13 @@
 // pages/folder/invoicelist/invoicelist.js
 const request = require("../../../utils/request")
 const utils = require("../../../utils/util")
+
+import { getDicts } from "../../../api/util"
+import { listTicketFilesAll } from "../../../api/folder/folder"
+import { selectInvInfoBySearch, deleteInfoByIds, changeInvInfo, checkInvoice } from "../../../api/folder/invoice"
+import { deptList, currentInfo } from "../../../api/dept/dept"
+
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -142,6 +149,7 @@ Page({
       ]
     },
     zzsTypeArr: [],
+    invTypeOptions: [],
 
     touchStartTime: null,
     touchEndTime: null,
@@ -155,7 +163,7 @@ Page({
     buttons: [{ text: '取消' }, { text: '确定' }],
     /** 转移发票相关 */
     transferDialogShow: false,
-
+    transferDialogSelectFolder: null,
   },
   /** 展示侧边导航栏 */
   showFolderList() {
@@ -170,9 +178,12 @@ Page({
   },
   /** 侧边导航栏改变 */
   folderChange(e) {
+    let index = e.detail;
     this.setData({
       folderListPopupShow: false,
-      selectedInvoiceArr: []
+      selectedInvoiceArr: [],
+      currFolder: index,
+      folderRadio: this.data.folderArr[index].value
     })
   },
 
@@ -216,19 +227,17 @@ Page({
             total.push(curr.id);
             return total
           }, [])
-          let params = {
-            id,
-            invoiceIndex,
-            invoiceIdArr
-          }
+        let params = {
+          id,
+          invoiceIndex,
+          invoiceIdArr
+        }
         wx.navigateTo({
           url: './../../home/detail/detail?params=' + JSON.stringify(params),
         })
       } else {
-        let bool = this.data.invoiceList.default[index].selected;
-        this.setData({
-          [`invoiceList.default[${index}].selected`]: !bool,
-        })
+        let folderRadio = this.data.folderRadio;
+        let bool = this.data.invoiceList[folderRadio][index].selected;
         let arr = this.data.selectedInvoiceArr;
         if (!bool) {
           arr.push(index);
@@ -241,9 +250,10 @@ Page({
           })
         }
         this.setData({
+          [`invoiceList.${folderRadio}[${index}].selected`]: !bool,
           selectedInvoiceArr: arr
         })
-        if (arr.length == this.data.invoiceList[this.data.folderArr[this.data.currFolder].value].length) {
+        if (arr.length == this.data.invoiceList[folderRadio].length) {
           this.setData({
             allChecked: true,
           })
@@ -255,6 +265,7 @@ Page({
       }
     }
   },
+  /** 关闭底部操作栏 */
   closeBottomOperation() {
     this.setData({
       bottomOperationShow: false,
@@ -285,19 +296,81 @@ Page({
       transferDialogShow: true,
     })
   },
-  transferRadioChange() {
-
+  transferRadioChange(e) {
+    let selectFolder = e.detail.value;
+    this.setData({
+      transferDialogSelectFolder: selectFolder
+    })
   },
   transferInvoiceSubmit(e) {
+    let that = this;
     if (e.detail.index == 0) {
-      this.setData({
+      that.setData({
         transferDialogShow: false
       })
     } else {
-      this.setData({
+      that.setData({
         transferDialogShow: false
       })
       // TODO 调用转移接口
+      let params = {
+        fileId: that.data.transferDialogSelectFolder,
+        invInfoId: that.data.selectedInvoiceArr.reduce((total, curr)=>{
+          total.push(that.data.invoiceList[that.data.folderRadio][curr].id);
+          return total;
+        }, []),
+        sourceFileId: that.data.folderRadio,
+      }
+      wx.showLoading({
+        title: '正在移动',mask: true
+      })
+      changeInvInfo(params).then(res=>{
+        wx.hideLoading();
+        if(res.code == 200){
+          app.myShowToast("票据移动成功");
+          that.closeBottomOperation();
+          that.setData({
+            [`pageNum[${that.data.currFolder}]`]: 1
+          })
+          /** 移动完之后当前票夹需要刷新，被移动票夹也需要刷新 */
+          that.getList();
+          let folderArr = that.data.folderArr,
+              toFolderIndex = 0;
+          for(let i=0,l=folderArr.length; i<l; i++){
+            if(folderArr[i].value == that.data.transferDialogSelectFolder){
+              /** 设置被移动票夹的页码为1 */
+              toFolderIndex = i;
+              break;
+            }
+          }
+          that.setData({
+            [`pageNum[$(toFolderIndex)]`]: 1
+          })
+          let params = {
+            fileId: that.data.folderRadio,
+            search: that.data.searchValue,
+            pageNum: 1,
+            pageSize: that.data.pageSize
+          }
+          selectInvInfoBySearch(params).then(res=> {
+            if (res.code == 200) {
+              this.$set(this.invoiceList, this.folderRadio, res.rows);
+              /** 接口返回的数据需要进行处理 */
+              for(let i=0,l=res.rows.length; i<l; i++){
+                res.rows[i].isVAT = that.data.zzsTypeArr.includes(rows[j].invType);
+                res.rows[i].invTypeLabel = utils.invTypeFormat(res.rows[i].invType, that.data.invTypeOptions);
+              }
+              that.setData({
+                [`invoiceList.${that.data.transferDialogSelectFolder}`]: res.rows
+              })
+            }
+          })
+        }else {
+          app.myShowToast(res.msg);
+        }
+      }).catch(()=>{
+        wx.hideLoading();
+      })
     }
   },
   /** 删除按钮 */
@@ -339,7 +412,7 @@ Page({
   },
 
   /** 转移 */
-  handleShift(e){
+  handleShift(e) {
     let that = this;
     if (that.data.selectedInvoiceArr.length == 0) {
       that.setData({
@@ -348,7 +421,7 @@ Page({
       return;
     }
     that.selectComponent("#userList").openUserPopup(
-      that.data.selectedInvoiceArr.reduce((total, curr)=>{
+      that.data.selectedInvoiceArr.reduce((total, curr) => {
         total.push(that.data.invoiceList[that.data.folderArr[that.data.currFolder].value][curr].id);
         return total;
       }, []),
@@ -359,7 +432,7 @@ Page({
   },
 
   /** 分享 */
-  handleShare(e){
+  handleShare(e) {
     let that = this;
     if (that.data.selectedInvoiceArr.length == 0) {
       that.setData({
@@ -368,7 +441,7 @@ Page({
       return;
     }
     that.selectComponent("#userList").openUserPopup(
-      that.data.selectedInvoiceArr.reduce((total, curr)=>{
+      that.data.selectedInvoiceArr.reduce((total, curr) => {
         total.push(that.data.invoiceList[that.data.folderArr[that.data.currFolder].value][curr].id);
         return total;
       }, []),
@@ -425,10 +498,86 @@ Page({
 
   onLoad: function (e) {
     /** 获取从上一个页面传过来的发票夹ID */
-    this.setData({
-      folderRadio: e.id,
-      debounceSearch: utils.myDebounce(this.getList, 2000, false)
+    let that = this;
+    let fileId = e.id;
+    that.setData({
+      folderRadio: fileId,
+      debounceSearch: utils.myDebounce(that.getList, 2000, false)
     })
+    let incomePromise = getDicts("income_check_inv_type");
+    let otherPromise = getDicts("other_ticket");
+    Promise.all([incomePromise, otherPromise]).then(res => {
+      let data = res[0].data;
+      let zzsTypeArr = [];
+      let invTypeOptions = [];
+      for (let i = 0, l = data.length; i < l; i++) {
+        zzsTypeArr.push(data[i].dictValue);
+      }
+      let arr = [];
+      invTypeOptions = arr.concat(res[0]['data'], res[1]['data']);
+      that.setData({
+        zzsTypeArr: zzsTypeArr,
+        invTypeOptions: invTypeOptions
+      })
+    })
+    wx.showLoading({
+      title: '加载中', mask: true
+    })
+    listTicketFilesAll().then(res => {
+      if (res.code == 200) {
+        let folderArr = [];
+        let invoiceList = {};
+        let promiseArr = [];
+        let pageNum = Array.apply(null, Array(res.rows.length)).map(() => 1);
+        let currFolder = 0;
+        for (let i = 0, l = res.rows.length; i < l; i++) {
+          if (res.rows[i].id == fileId) {
+            currFolder = i;
+          }
+          let currItem = {
+            name: res.rows[i].fileName,
+            value: res.rows[i].id
+          }
+          folderArr.push(currItem);
+
+          let params = {
+            fileId: res.rows[i].id,
+            pageNum: pageNum[i],
+            pageSize: that.data.pageSize
+          }
+          promiseArr.push(selectInvInfoBySearch(params))
+        }
+        that.setData({
+          folderArr: folderArr,
+          currFolder: currFolder,
+          pageNum: pageNum
+        })
+        Promise.all(promiseArr).then(response => {
+          wx.hideLoading();
+          let invoiceList = {};
+          for (let i = 0, l = response.length; i < l; i++) {
+            let rows = response[i].rows;
+            for (let j = 0, jl = rows.length; j < jl; j++) {
+              rows[j].isVAT = that.data.zzsTypeArr.includes(rows[j].invType);
+              rows[j].invTypeLabel = utils.invTypeFormat(rows[j].invType, that.data.invTypeOptions);
+            }
+            invoiceList[res.rows[i].id] = response[i].rows;
+          }
+          that.setData({
+            invoiceList: invoiceList
+          })
+          if (response[currFolder].total == invoiceList[fileId].length) {
+            that.setData({
+              finished: true
+            })
+          }
+        })
+      } else {
+        wx.hideLoading();
+        app.myShowToast(res.msg);
+      }
+    })
+
   },
 
   /** 刷新或者请求发票列表数据 */
@@ -440,25 +589,45 @@ Page({
       pageNum: that.data.pageNum[that.data.currFolder],
       pageSize: that.data.pageSize
     }
-    //TODO 请求发票数据接口
-    setTimeout(()=>{
+    wx.showLoading({
+      title: '加载中',mask: true
+    })
+    selectInvInfoBySearch(params).then(res=>{
       wx.hideLoading();
-      if(that.data.refreshing){
-        wx.showToast({
-          icon: "none",
-          title: '刷新完成',
-        })
+      if(res.code == 200){
+        /** 接口返回的数据需要进行处理 */
+        for(let i=0,l=res.rows.length; i<l; i++){
+          res.rows[i].isVAT = that.data.zzsTypeArr.includes(rows[j].invType);
+          res.rows[i].invTypeLabel = utils.invTypeFormat(res.rows[i].invType, that.data.invTypeOptions);
+        }
+        let folderRadio = that.data.folderRadio;
+        let invoiceList = that.data.invoiceList[folderRadio];
+        let finished = false;
+        if(that.data.pageNum[that.data.currFolder] == 1){
+          invoiceList = res.rows;
+        }else{
+          invoiceList.splice(invoiceList.length, 0, ...res.rows);
+        }
+        /** 数据已全部加载 */
+        if(invoiceList.length >= res.total || res.rows.length < that.data.pageSize){
+          finished = true;
+        }else {
+          finished = false;
+        }
         that.setData({
-          refreshing: false,
+          [`invoiceList.${folderRadio}`]: invoiceList,
+          finished: finished
         })
-        wx.stopPullDownRefresh();
-      }else {
-        wx.showToast({
-          icon: "none",
-          title: '已加载更多',
+        
+      }else{
+        that.setData({
+          finished: false
         })
+        app.myShowToast(res.msg);
       }
-    }, 5000)
+    }).catch(()=>{
+      wx.hideLoading();
+    })
   },
   /** 搜索 */
   searchValueChange(e) {
@@ -486,6 +655,9 @@ Page({
       wx.showLoading({
         mask: true,
         title: '正在加载',
+      })
+      this.setData({
+        ['pageNum[' + this.data.currFolder + ']']: this.data.pageNum[this.data.currFolder] + 1,
       })
       this.getList();
     }

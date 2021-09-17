@@ -12,17 +12,17 @@
   <view class="public-folder-content public-flex-content">
     <view wx:for="{{folderArr}}" wx:for-index="index" wx:for-item="item"
       class="{{item.checked ? 'public-item-select' : '' }} public-folder-content-item" wx:key="index">
-      <view class="public-folder-content-item-left" bindtap="folderSelect" data-params="{{item}}">
+      <view class="public-folder-content-item-left" bindtap="folderSelect" data-index="{{index}}">
         <view class="public-left-select-icon" wx:if="{{item.checked}}">
           <vant-icon name="success" />
         </view>
-        <image src="{{item.icon}}" mode="widthFix" />
-        {{item.name}}
+        <image src="{{folderIcon}}" mode="widthFix" />
+        {{item.fileName}}
       </view>
       <view class="public-folder-content-item-right" bindtap="jumpInvoiceList" data-params="{{item}}">
         <view class="public-folder-content-item-right-left">
-          <view>{{item.amount}}元</view>
-          <view class="public-color-gray">{{item.num}}张</view>
+          <view>{{item.totalMoney}}元</view>
+          <view class="public-color-gray">{{item.totalCount}}张</view>
         </view>
         <view>
           <vant-icon name="arrow" size="1.4em" />
@@ -43,9 +43,9 @@
 
 <mp-dialog show="{{operationDialogShow}}" buttons="{{buttons}}" bindbuttontap="operationFolderTap">
   <radio-group bindchange="operationRadioChange">
-    <label class="weui-cell weui-check__label" wx:for="{{operationRadioItems}}" wx:key="index">
+    <label class="weui-cell weui-check__label" wx:for="{{operationRadioItems}}" wx:key="index" style="padding: 8px 16px;">
       <view class="weui-cell__hd">
-        <radio value="{{item.value}}" checked="{{item.checked}}" />
+        <radio value="{{item.value}}" checked="{{item.checked}}" disabled="{{item.disabled}}"/>
       </view>
       <view class="weui-cell__bd">{{item.name}}</view>
     </label>

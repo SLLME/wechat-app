@@ -1,7 +1,6 @@
 // pages/home/home.js
-const utils = require("../../utils/util")
-const request = require("../../utils/request")
-const test = require("./../../api/test")
+import { currentInfo } from "./../../api/dept/dept"
+import { getInvoiceFromText } from "../../api/discern/discern"
 let app = getApp();
 Page({
 
@@ -10,8 +9,6 @@ Page({
    */
   data: {
     userInfo: {},
-    companyName: "广州众智汇科技有限公司",
-    userName: "叶良辰",
     operationNavArr:[
       {
         id: "scan",
@@ -90,7 +87,15 @@ Page({
     sheetGroups: [
       { text: '修改', value: 1 },
       { text: '删除', value: 2 },
-    ]
+    ],
+
+    files: [],
+    baseArrs: [],
+    suffixArrs: [],
+
+    buttons: [{ text: '取消' }, { text: '确定' }], 
+    shortMessageShow: false,
+    shortMessageVal: "",
   },
   /** 添加发票抬头 */
   addTicketTitle(){
@@ -118,42 +123,67 @@ Page({
 
     }
   },
+
+  shortMessageChange(e){
+    let val = e.detail.value;
+    this.setData({
+      shortMessageVal: val
+    })
+  },
+  /** 短信识别 */
+  shortMessageSubmit(e){
+    let that = this;
+    if (e.detail.index == 0) {
+      that.setData({
+        shortMessageShow: false
+      })
+    } else {
+      if(that.data.shortMessageVal == ""){
+        wx.showToast({
+          title: '短信内容不能为空',
+          icon: "none"
+        })
+        return;
+      }
+      let params = {
+        text: that.data.shortMessageVal,
+      }
+      wx.showLoading({
+        mask: true,
+        title: '录入中',
+      })
+      getInvoiceFromText(params).then(res=>{
+        wx.hideLoading();
+        if(res.code == 200){
+          that.setData({
+            shortMessageShow: false,
+            shortMessageVal: false
+          })
+          wx.showToast({
+            title: '短信录入成功',icon: "none"
+          })
+        }else {
+          wx.showToast({
+            title: res.msg,icon: "none"
+          })
+        }
+      }).catch(()=>{
+        wx.hideLoading();
+      })
+    }
+  },
+ 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(utils.formatTime(new Date()));
-    test.getImage().then(res=>{
-      console.log(res);
-    }).catch(error=>{
-      console.log(error);
-    })
+    // console.log(utils.formatTime(new Date()));
+
     app.globalData.routeObj[this.__route__] = this;
 
-    wx.setStorageSync("token", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    console.log(wx.getStorageSync("token"));
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo
-        })
-      }
-    })
-    wx.login({
-      timeout: 0
-    }).then(res=>{
-      console.log(res)
-      let code = res.code;
-      
-    }).catch(error=>{
-      console.log(error);
-    })
-
-    /**
-     * 进来之后判断用户是否进行过授权，如果没有弹出弹窗让用户点击授权
-     */
+    // wx.setStorageSync("token", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    // console.log(wx.getStorageSync("token"));
+    
   },
 
   /**
@@ -166,12 +196,29 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(wx.getStorageSync('token')){
+      currentInfo().then(res=>{
+        if(res.code == 200){
+          this.setData({
+            userInfo: res.data
+          })
+        }
+      }).catch(error=>{
+        wx.showToast({
+          title: error.errMsg,icon:'none'
+        })
+      })
+    }else{
+      wx.switchTab({
+        url: '../about/about'
+      })
+    }
     if (typeof this.getTabBar === 'function' &&
-    this.getTabBar()) {
-    this.getTabBar().setData({
-      selected: 0
-    })
-  }
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
   },
 
   /**
@@ -222,17 +269,50 @@ Page({
       wx.navigateTo({
         url: item.route,
       })
+    }else if(item.id == "camera"){
+      this.handleCamera();
     }else if(item.id == "wechat"){
 
     }else if(item.id == "message"){
-
+      this.setData({
+        shortMessageShow: true
+      })
     }else if(item.id == "email"){
-
+      
     }
+  },
+  /** 顶部拍照按钮 */
+  handleCamera(){
+    wx.yx.chooseImage({
+      count: 9,
+      sourceType: ['camera'],
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        let filePath = [];
+        let fsm = wx.getFileSystemManager()
+        let oldBaseArrs = that.data.baseArrs,
+            suffixArrs = that.data.suffixArrs;
+        for(let i=0,l=res.imgArray.length; i<l; i++){
+          filePath.push(res.imgArray[i].path);
+          let fileSuffix = res.imgArray[i].path.split(".").pop().toLowerCase();
+          if(fileSuffix == "pdf"){
+            oldBaseArrs.push(fileSuffix + "_" + fsm.readFileSync(res.imgArray[i].path, 'base64'));
+          }else {
+            oldBaseArrs.push(fileSuffix + "_" + fsm.readFileSync(res.imgArray[i].url, 'base64'));
+          }
+          suffixArrs.push(fileSuffix);
+        }
+        that.setData({
+          files: that.data.files.concat(filePath),
+          baseArrs: oldBaseArrs,
+          suffixArrs: suffixArrs
+        });
+      }
+    })
   },
   onTabItemTap (item) {
     console.log(item.index)
     console.log(item.pagePath)
     console.log(item.text)
-  }
+  },
 })

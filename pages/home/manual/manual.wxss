@@ -1,5 +1,5 @@
 /* pages/home/manual/manual.wxss */
-.public-manual-content{
+.public-manual-content {
   width: 100%;
   height: 100%;
   padding: 5px 10px;
@@ -7,7 +7,8 @@
   background-color: rgb(204 204 204 / 50%);
   font-size: 12px;
 }
-.public-manual-content-form{
+
+.public-manual-content-form {
   width: 100%;
   border-radius: 3%;
   background-color: white;
@@ -15,7 +16,7 @@
   padding-top: 10px;
 }
 
-.my-weui-uploader__input-box{
+.my-weui-uploader__input-box {
   overflow: hidden;
   float: left;
   position: relative;
@@ -26,17 +27,22 @@
   box-sizing: border-box;
   background-color: #ededed;
 }
-.my-weui-uploader__input-box image{
+
+.my-weui-uploader__input-box image {
   width: 100%;
 }
-.public-manual-content-tips{
+
+.public-manual-content-tips {
   margin-top: 30px;
   color: #cccccc;
 }
-.public-manual-content-tips view:first-child{
+
+.public-manual-content-tips view:first-child {
   color: black;
 }
-.weui-cells:after, .weui-cells:before {
+
+.weui-cells:after,
+.weui-cells:before {
   content: " ";
   position: absolute;
   left: 0;
@@ -49,7 +55,80 @@
 .weui-btn-area {
   margin: 20px 16px;
 }
-.weui-cell{
-  padding: 8px 16px!important;
+
+.weui-cell, .van-cell {
+  padding: 8px 16px !important;
   font-size: 14px;
+}
+
+/** 更改折叠面板样式 */
+
+.van-collapse-item__title {
+  padding: 0 !important;
+}
+
+.van-collapse-item__title .weui-cell {
+  padding: 0px !important;
+}
+
+.my-collapse .van-cell::after {
+  /*border-bottom: 1px solid white!important;*/
+  opacity: 0;
+}
+
+.my-collapse .van-collapse-item__content {
+  padding: 0 !important;
+}
+
+.my-collapse .van-collapse-item {
+  /* padding: 5px 0; */
+}
+
+.my-collapse .van-collapse-item::before {
+  position: absolute;
+  box-sizing: border-box;
+  content: ' ';
+  pointer-events: none;
+  right: 16px;
+  bottom: 0;
+  left: 16px;
+  border-bottom: 1px solid #ebedf0;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  opacity: 0;
+}
+
+.my-collapse .van-collapse-item--border::after {
+  border-top: 0px solid white !important;
+}
+
+.my-collapse .van-hairline--top-bottom::after {
+  border: 0 solid white !important;
+}
+
+.van-hairline--top-bottom::after,
+.van-hairline-unset--top-bottom::after {
+  border-width: 0px 0 !important;
+}
+
+.van-hairline--top:after {
+  border-width: 0 !important;
+}
+/** 手风琴title 样式 */
+.van-collapse-item__title::before{
+  position: absolute;
+  box-sizing: border-box;
+  content: ' ';
+  pointer-events: none;
+  right: 16px;
+  top: 0;
+  left: 16px;
+  border-bottom: 1px solid #ebedf0;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  z-index: 999;
+}
+
+textarea {
+  width: auto !important;
 }

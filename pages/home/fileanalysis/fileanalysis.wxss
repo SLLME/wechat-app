@@ -16,6 +16,8 @@
 .my-swiper-item{
   /* background: white;
   border-radius: 5px; */
+  display: flex;
+  flex-direction: column;
 }
 .weui-btn-area{
   margin: 40px 10px;
@@ -64,4 +66,56 @@
 .weui-cell {
   padding: 8px 16px!important;
   font-size: 14px;
+}
+
+/** 更改折叠面板样式 */
+  /*.my-collapse /deep/ .van-cell{*/
+    /*font-size: 16px;*/
+    /*align-items: center;*/
+    /*padding: 0!important;*/
+  /*}*/
+  .van-collapse-item__title{
+    padding: 0!important;
+  }
+  .van-collapse-item__title .weui-cell{
+    padding: 0px!important;
+  }
+  .my-collapse .van-cell::after {
+    /*border-bottom: 1px solid white!important;*/
+    opacity: 0;
+  }
+  .my-collapse .van-collapse-item__content{
+    padding: 0!important;
+  }
+  .my-collapse .van-collapse-item {
+    padding: 5px 0;
+  }
+  .my-collapse .van-collapse-item::before {
+    position: absolute;
+    box-sizing: border-box;
+    content: ' ';
+    pointer-events: none;
+    right: 16px;
+    bottom: 0;
+    left: 16px;
+    border-bottom: 1px solid #ebedf0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    opacity: 0;
+  }
+  .my-collapse .van-collapse-item--border::after {
+    border-top: 0px solid white!important;
+  }
+  .my-collapse .van-hairline--top-bottom::after {
+    border: 0 solid white!important;
+  }
+  .van-hairline--top-bottom::after, .van-hairline-unset--top-bottom::after {
+     border-width: 0px 0!important;
+  }
+  .van-hairline--top:after {
+    border-width: 0!important;
+}
+
+textarea {
+  width: auto!important;
 }

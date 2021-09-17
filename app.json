@@ -1,6 +1,9 @@
 {
   "pages": [
+    "pages/folder/folder",
+
     "pages/home/home",
+    "pages/about/about",
 
     "pages/grant/grant",
     "pages/index/index",
@@ -8,11 +11,10 @@
     "pages/folder/invoicelist/invoicelist",
     "pages/home/fileinput/fileinput",
     "pages/home/more/more",
-    "pages/folder/folder",
     "pages/home/fileanalysis/fileanalysis",
     "pages/home/manual/manual",
     "pages/home/detail/detail",
-    "pages/about/about",
+    
     "pages/logs/logs",
     "pages/camera/camera",
     "pages/home/checked/checked",

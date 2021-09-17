@@ -8,6 +8,11 @@
 }
 .public-top-title-div{
   display: flex;
+  align-items: center;
+}
+.public-top-title-div image{
+  width: 24px;
+  height: 24px;
 }
 .public-top-title van-icon{
   display: flex;
@@ -18,7 +23,7 @@
   background: rgba(204, 204, 204, 0.36);
   display: flex;
   flex-direction: column;
-  margin-top: 97px;
+  margin-top: 102px;
 }
 .public-top-search{
   padding: 10px 10px;
@@ -290,4 +295,17 @@ user-list{
 }
 .weui-cells{
   margin-top: 0px!important;
+}
+
+.van-sidebar-item--selected{
+  border-color: transparent!important;
+}
+.van-sidebar-item--selected .van-sidebar-item__text::before{
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #ee0a24;
 }

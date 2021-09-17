@@ -11,23 +11,74 @@
             <view class="custom-indicator">{{ swiperIndex + 1 }}/{{ navTabs.length }}</view>
             <view class="swipe-item-title">{{item.title}}</view>
 
-            <mp-form id="{{'imageForm' + index}}" models="{{imageInvoiceForm[index]}}">
+            <mp-form id="{{'imageForm' + index}}" models="{{imageInvoiceForm[index]}}" style="flex: 1;overflow: auto;">
               <mp-cells title="" footer="">
                 <mp-cell wx:for="{{item.el.field}}" wx:for-item="part" wx:for-index="iindex" prop="{{part}}"
                   title="{{item.el.name[iindex]}}" ext-class="" show-error wx:key="*this">
                   <block wx:if="{{part != 'invDate'}}">
-                    <input data-field="{{part}}" value="{{imageInvoiceForm[index][part]}}" class="weui-input" bindinput="formFieldChange" />
+                    <input data-field="{{part}}" data-index="{{index}}" value="{{imageInvoiceForm[index][part]}}" class="weui-input"
+                      bindinput="formFieldChange" />
                   </block>
                   <block wx:else>
-                    <picker data-field="date" mode="date" value="{{imageInvoiceForm[index].invDate}}"
+                    <picker data-field="date" mode="date" value="{{imageInvoiceForm[index].invDate}}" data-index="{{index}}"
                       placeholder="请选择开票日期" bindchange="invDateChange">
                       <view class="weui-input">{{imageInvoiceForm[index].invDate}}</view>
                     </picker>
                   </block>
                 </mp-cell>
+
+                <!-- <van-collapse value="{{ activeNames }}" class="my-collapse"
+                  wx:if="{{imageInvoiceForm[index].isVAT}}" bind:change="onChange">
+                  <van-collapse-item name="1"> -->
+                  <block wx:if="{{imageInvoiceForm[index].isVAT}}">
+                    <mp-cell title="销方名称">
+                      <textarea data-field="sellName" data-index="{{index}}" auto-height
+                        value="{{imageInvoiceForm[index].sellName}}" bindinput="formFieldChange" />
+                    </mp-cell>
+                    <mp-cell title="销方税号">
+                      <textarea data-field="sellTaxNo" data-index="{{index}}" auto-height
+                        value="{{imageInvoiceForm[index].sellTaxNo}}" bindinput="formFieldChange" />
+                    </mp-cell>
+                    <mp-cell title="销方地址">
+                      <textarea data-field="sellAddrTel" data-index="{{index}}" auto-height
+                        value="{{imageInvoiceForm[index].sellAddrTel}}" bindinput="formFieldChange" />
+                    </mp-cell>
+                    <mp-cell title="销方银行">
+                      <textarea data-field="sellBankAccount" data-index="{{index}}" auto-height
+                        value="{{imageInvoiceForm[index].sellBankAccount}}" bindinput="formFieldChange" />
+                    </mp-cell>
+                  <!-- </van-collapse-item>
+                  <van-collapse-item name="2"> -->
+                    <mp-cell title="购方名称">
+                      <textarea data-field="buyName" data-index="{{index}}" auto-height
+                        value="{{imageInvoiceForm[index].buyName}}" bindinput="formFieldChange" />
+                    </mp-cell>
+                    <mp-cell title="购方税号">
+                      <textarea data-field="buyTaxNo" data-index="{{index}}" auto-height
+                        value="{{imageInvoiceForm[index].buyTaxNo}}" bindinput="formFieldChange" />
+                    </mp-cell>
+                    <mp-cell title="购方地址">
+                      <textarea data-field="buyAddrTel" data-index="{{index}}" auto-height
+                        value="{{imageInvoiceForm[index].buyAddrTel}}" bindinput="formFieldChange" />
+                    </mp-cell>
+                    <mp-cell title="购方银行">
+                      <textarea data-field="buyBankAccount" data-index="{{index}}" auto-height
+                        value="{{imageInvoiceForm[index].buyBankAccount}}" bindinput="formFieldChange" />
+                    </mp-cell>
+                  </block>
+                  <!-- </van-collapse-item>
+                </van-collapse> -->
+
+                <mp-cell prop="formName" title="发票联次">
+                  <picker bindchange="formNameChange" value="{{formNameIndexArr[index]}}" range="{{invJointArr}}"
+                    data-index="{{index}}">
+                    <view class="weui-input">{{invJointArr[formNameIndexArr[index]]}}</view>
+                  </picker>
+                </mp-cell>
                 <mp-cell prop="folder" title="所属票夹">
-                  <picker bindchange="folderChange" value="{{folderIndex}}" range="{{folderArr}}">
-                    <view class="weui-input">{{folderArr[folderIndex]}}</view>
+                  <picker bindchange="folderChange" value="{{folderIndexArr[index]}}" range="{{folderArr}}"
+                    data-index="{{index}}">
+                    <view class="weui-input">{{folderArr[folderIndexArr[index]]}}</view>
                   </picker>
                 </mp-cell>
               </mp-cells>
@@ -42,3 +93,5 @@
     </view>
   </view>
 </view>
+
+<mp-toptips msg="{{error}}" type="error" show="{{error}}" delay="5000" ></mp-toptips>

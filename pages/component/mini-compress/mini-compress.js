@@ -1,6 +1,4 @@
 // 对外曝露的 wxml属性为 <mini-compress />
-// Author: yenche123
-// Date: 2020/07/26
 
 Component({
 
@@ -43,13 +41,13 @@ Component({
     initImgHelper() {
       let _this = this
       wx.yx = wx.yx || {}
-      wx.yx.chooseImage = ({ count = 3, success = '', fail = '', imgWidth = 1080, maxh2w = 8}) => {
+      wx.yx.chooseImage = ({ count = 3, success = '', fail = '', imgWidth = 1080, maxh2w = 8, sourceType=['album', 'camera']}) => {
         _this.setData({ num: count, success, fail, imgWidth, _maxh2w: maxh2w })
 
         wx.chooseImage({
           count,
           sizeType: ['original'],
-          sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+          sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
           success(res) {
             let tempFiles = res.tempFiles
             let nonPictureFiles = [],

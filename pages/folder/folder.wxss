@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 16px;
+  font-size: 24rpx;
 }
 .public-item-select{
   background: #f7f7f7;
@@ -55,4 +55,10 @@
 }
 .public-color-gray{
   color: gray;
+}
+
+.public-left-select-icon .van-icon{
+  background-color: #338ae8;
+  color: white;
+  border-radius: 50%;
 }

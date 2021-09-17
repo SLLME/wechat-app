@@ -1,8 +1,8 @@
 <!--pages/home/home.wxml-->
 <view class="app-container">
   <view class="public-top-title">
-    <!-- <view>{{companyName}}</view> -->
-    <view>{{userName}}</view>
+    <view>{{userInfo.deptName}}</view>
+    <view>{{userInfo.realName}}</view>
   </view>
   <view class="public-top-operation">
     <view wx:for="{{operationNavArr}}" wx:for-index="index" wx:for-item="item" wx:key="index"
@@ -93,5 +93,11 @@
   </view>
 </page-container>
 
+<mp-dialog show="{{shortMessageShow}}" title="短信识别" buttons="{{buttons}}" bindbuttontap="shortMessageSubmit">
+    <textarea style="height: 200px;text-align: left;" class="weui-input" placeholder="请输入短信内容或者粘贴短信内容到此输入框中(必填)" bindinput="shortMessageChange" />
+</mp-dialog>
+
 <mp-actionSheet bindactiontap="actionsheetClick" show="{{showActionsheet}}" actions="{{sheetGroups}}">
 </mp-actionSheet>
+
+<mini-compress></mini-compress>
